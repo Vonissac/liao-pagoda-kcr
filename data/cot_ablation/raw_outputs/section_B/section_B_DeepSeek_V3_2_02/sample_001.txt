@@ -1,0 +1,1 @@
+Global(Sides=8,BaseR=6.0)+a-c-c-c-c-c-e[col=e1](e17)-f-g[num=2](e1-g10)-k-i

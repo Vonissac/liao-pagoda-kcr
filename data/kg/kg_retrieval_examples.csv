@@ -1,0 +1,5 @@
+﻿Type,Question,Expected Answer,LP-KG (F1),BM25 (F1),Logic Analysis
+Factual,哪些辽塔位于北京市？,照塔; 云居寺老虎塔; 玉皇塔; 刘师民塔; 鞭塔; 天开塔; 云居寺南塔; 忏悔正慧大师灵塔; 琬公塔; 忏悔上人坟塔; 上方山亭阁式塔; 昊天塔; 天宁寺塔; 法均和尚墓塔; 法均和尚衣钵塔; 云居寺塔; 伍侯塔,鞭塔; 云居寺南塔; 忏悔正慧大师灵塔; 法均和尚墓塔; 天开塔; 云居寺老虎塔; 云居寺塔; 照塔; 昊天塔; 伍侯塔; 法均和尚衣钵塔; 琬公塔; 玉皇塔; 天宁寺塔; 上方山亭阁式塔; 刘师民塔; 忏悔上人坟塔 (1.0),云居寺老虎塔; 玉皇塔; 伍侯塔... (0.4),KG ensures precision in spatio-temporal attribution.
+Attribute Intersect,位于辽宁省境内，高度超过40米的辽塔有哪些？,朝阳北塔; 辽阳白塔; 崇寿寺塔; 朝阳南塔; 云接寺塔; 广济寺塔; 广胜寺塔,辽阳白塔; 广胜寺塔; 朝阳北塔; 朝阳南塔; 广济寺塔; 云接寺塔; 崇寿寺塔 (1.0),崇寿寺塔; 云接寺塔; 十八里堡塔... (0.19),KG solves multi-constraint logical intersections.
+Negative Constraints,位于辽宁省境内，但平面形状不是 8 角形的辽塔有哪些？,东平房塔; 四官营子塔; 朝阳北塔; 朝阳南塔; 青峰塔; 大宝塔; 云接寺塔; 妙峰寺南塔,妙峰寺南塔; 东平房塔; 大宝塔; 朝阳北塔; 青峰塔; 朝阳南塔; 云接寺塔; 四官营子塔 (1.0),上京南塔; 崇寿寺塔; 塔营子塔... (0.21),KG handles 'NOT' logic via graph node filtering.
+Descriptive Identifiers,中国现存高度最高的辽代砖塔是哪座？,云居寺南塔,云居寺南塔 (1.0),华严塔; 伍侯塔; 鞭塔... (0.03),KG traverses deep hierarchy for structural details.

@@ -1,0 +1,11 @@
+Metric or rank bin,Value,Count/denominator,Interpretation
+Hit@1,0.6912,47/68,First comparator is acceptable
+Hit@3,0.8971,61/68,Expert-reviewable top-three set contains an acceptable comparator
+Hit@5,0.9559,65/68,Top-five candidate set contains an acceptable comparator
+MRR,0.7995,68 valid cases,Mean reciprocal rank across valid withheld cases
+First-hit rank 1,47,47/68,Rank distribution for first acceptable comparator
+First-hit rank 2,9,9/68,Rank distribution for first acceptable comparator
+First-hit rank 3,5,5/68,Rank distribution for first acceptable comparator
+First-hit rank 4,1,1/68,Rank distribution for first acceptable comparator
+First-hit rank 5,3,3/68,Rank distribution for first acceptable comparator
+First-hit rank >5,3,3/68,Rank distribution for first acceptable comparator

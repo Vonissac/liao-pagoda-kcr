@@ -1,0 +1,1449 @@
+[
+  {
+    "qid": "ATTR-001",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "位于辽宁省境内，高度超过40米的辽塔有哪些？",
+    "expected_answer": [
+      "朝阳北塔",
+      "辽阳白塔",
+      "崇寿寺塔",
+      "朝阳南塔",
+      "云接寺塔",
+      "广济寺塔",
+      "广胜寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->(loc {名称:'辽宁省'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-002",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "位于北京市内，包含飞天装饰的塔有哪些？",
+    "expected_answer": [
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:包含层|包含部位|包含主构件]->()-[:包含装饰|包含主构件]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-003",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "位于辽宁省境内，辽圣宗时期的塔有哪些？",
+    "expected_answer": [
+      "广胜寺塔",
+      "八棱观塔",
+      "塔营子塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:属于朝代|始建于|属于皇帝|属于年号*1..3]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-004",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "位于天津市内，8角形的塔有哪些？",
+    "expected_answer": [
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-005",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "位于河北省内，全国第七批全国重点文物保护单位？",
+    "expected_answer": [
+      "照塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) WHERE p.保护级别 CONTAINS '第七批' AND p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-006",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "天庆年间的花塔有哪些？",
+    "expected_answer": [
+      "云居寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于|属于朝代*1..2]->({名称: '天庆'}) MATCH (p)-[:结构类型为*1..2]->({名称: '花塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-007",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "980年以前，十三层塔有哪些？",
+    "expected_answer": [
+      "宝塔寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 13 MATCH (p)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->(d) WHERE d.名称 IN ['辽朝', '辽代', '辽太祖', '辽太宗', '辽世宗', '辽穆宗', '辽景宗', '神册', '天赞', '天显', '会同', '大同', '天禄', '应历', '保宁'] RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-008",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "大康年间，包含假门的塔有哪些？",
+    "expected_answer": [
+      "天宁寺塔",
+      "朝阳南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->({名称: '大康'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->()-[:包含装饰*1..2]->({名称: '假门'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-009",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "重熙年间，的全国重点文物保护单位有哪些？",
+    "expected_answer": [
+      "无垢净光舍利塔",
+      "南安寺塔",
+      "辽释迦佛舍利塔",
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->({名称: '重熙'}) WHERE p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-010",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "9层的塔中，包含铺作层的辽塔有哪些？",
+    "expected_answer": [
+      "东塔山塔",
+      "磨石沟塔",
+      "高尔山塔",
+      "妙峰寺北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 9 MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-011",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "30米以上的塔中，包含哪些楼阁塔？",
+    "expected_answer": [
+      "昊天塔",
+      "万部华严经塔",
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->(t {名称: '楼阁式塔'}) WHERE p.测量通高 > 30 RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-012",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "8角形塔中有哪些在水域周边？",
+    "expected_answer": [
+      "双塔庵北塔",
+      "佛真猞猁迤逻尼塔",
+      "智度寺塔",
+      "兴文塔",
+      "南安寺塔",
+      "西岗塔",
+      "天宫寺塔",
+      "圣塔院塔",
+      "天成寺塔",
+      "天宁寺塔",
+      "高尔山塔",
+      "辽滨塔",
+      "八棱观塔",
+      "十八里堡塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:位于环境]->(e:环境类型 {名称: '水域周边'}) MATCH (p)-[:平面形状为]->(s {名称: '8角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-013",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "13层塔中，哪些塔是为了供奉舍利？",
+    "expected_answer": [
+      "朝阳北塔",
+      "无垢净光舍利塔",
+      "南安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 13 MATCH (p)-[:修建目的*1..3]->(f) WHERE f.名称 CONTAINS '舍利' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-014",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "哪些辽塔含有塔身佛像的第三批全国重点文物保护单位？",
+    "expected_answer": [
+      "朝阳北塔",
+      "崇兴寺西塔",
+      "崇兴寺东塔",
+      "辽阳白塔",
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..3]->()-[:包含装饰|包含主构件]->({名称: '塔身佛像'}) WHERE p.保护级别 CONTAINS '第三批' AND p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-015",
+    "category": "Attribute Intersect",
+    "info_count": 2,
+    "query": "哪些花塔在空间形态上为寺庙中一部分？",
+    "expected_answer": [
+      "云居寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '花塔'}) MATCH (p)-[:空间隶属]->({名称: '寺庙中一部分'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-016",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "位于辽宁省境内，高度超过40米且平面为8角形的辽塔有哪些？",
+    "expected_answer": [
+      "辽阳白塔",
+      "广济寺塔",
+      "广胜寺塔",
+      "崇寿寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-017",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "辽圣宗时期修建，位于内蒙古自治区境内且属于全国重点文物保护单位的塔有哪些？",
+    "expected_answer": [
+      "万部华严经塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) WHERE p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-018",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "位于北京市，层数为13层且包含“飞天”装饰的辽塔有哪些？",
+    "expected_answer": [
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:层数为]->({数值: 13}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-019",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "结构密檐式，位于河北省且包含假窗装饰的辽塔有哪些？",
+    "expected_answer": [
+      "照塔",
+      "天成寺塔",
+      "圣塔院塔",
+      "西岗塔",
+      "南安寺塔",
+      "佛真猞猁迤逻尼塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '假窗'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-020",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "大康年间修建，位于辽宁省且包含铺作构件的塔有哪些？",
+    "expected_answer": [
+      "朝阳南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->({名称: '大康'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-021",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "为了供奉舍利修建，高度在30米以上且平面为4角形的塔有哪些？",
+    "expected_answer": [
+      "朝阳北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->(f) WHERE f.名称 CONTAINS '舍利' MATCH (p)-[:平面形状为]->({名称: '4角形'}) WHERE p.测量通高 > 30 RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-022",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "位于田园环境，结构为密檐式且属于辽代晚期（1100年后）的塔有哪些？",
+    "expected_answer": [
+      "辽滨塔",
+      "妙峰寺北塔",
+      "妙峰寺南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:位于环境]->({名称: '田园'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:属于年号|始建于*1..3]->(n) WHERE n.名称 IN ['乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-023",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "位于天津市内，属于省级文物保护单位且为8角形的辽塔有哪些？",
+    "expected_answer": [
+      "天成寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-024",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "重熙年间修建，层数为13层且位于水域周边的塔有哪些？",
+    "expected_answer": [
+      "天宫寺塔",
+      "南安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->({名称: '重熙'}) MATCH (p)-[:层数为]->({数值: 13}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-025",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "包含转华盖装饰，位于内蒙古且高度超过40米的塔有哪些？",
+    "expected_answer": [
+      "辽释迦佛舍利塔",
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '华盖'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-026",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "平面形状为8角形的辽塔，位于河北省且包含莲花层的有哪些？",
+    "expected_answer": [
+      "照塔",
+      "天成寺塔",
+      "圣塔院塔",
+      "天宫寺塔",
+      "西岗塔",
+      "南安寺塔",
+      "双塔庵北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) MATCH (p)-[:包含主构件|包含层*1..5]->({通用名称: '莲花层'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-027",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "作为祈福修建，位于北京市且结构楼阁式塔的有哪些？",
+    "expected_answer": [
+      "玉皇塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->({名称: '风水祈福'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-028",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "包含叠涩层，层数为7层且位于寺庙内部的辽塔有哪些？",
+    "expected_answer": [
+      "十八里堡塔",
+      "云居寺老虎塔",
+      "鞭塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位*1..3]->({通用名称: '叠涩层'}) MATCH (p)-[:层数为]->({数值: 7}) MATCH (p)-[:空间隶属]->({名称: '寺庙中一部分'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-029",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "辽兴宗时期修建，包含假门装饰且位于水域周边环境的塔有哪些？",
+    "expected_answer": [
+      "天宫寺塔",
+      "南安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于皇帝|属于年号|始建于*1..4]->(n) WHERE n.名称 IN ['辽兴宗', '重熙', '景福'] MATCH (p)-[:包含层|包含主构件|包含部位|包含装饰*1..5]->({名称: '假门'}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-030",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "清宁年间修建，位于辽宁且包含塔刹部位的塔有哪些？",
+    "expected_answer": [
+      "广济寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..5]->({名称: '清宁'}) MATCH (p)-[:属于省份|属于城市|位于今*1..5]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位*1..3]->({类型: '塔刹'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-031",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "包含力士装饰，位于北京市且属于全国重点文物保护单位的有哪些？",
+    "expected_answer": [
+      "昊天塔",
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..7]->(c) WHERE c.名称 CONTAINS '力士' MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) WHERE  p.保护级别 CONTAINS '全国' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-032",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "高度在20米以下，平面形状为8角形且包含铺作层的辽塔有哪些？",
+    "expected_answer": [
+      "东塔山塔",
+      "磨石沟塔",
+      "高尔山塔",
+      "塔湾塔",
+      "照塔",
+      "玉皇塔",
+      "天开塔",
+      "法均和尚墓塔",
+      "法均和尚衣钵塔",
+      "天成寺塔",
+      "西岗塔",
+      "伍侯塔",
+      "双塔庵北塔",
+      "禅房寺塔",
+      "华严塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' AND p.测量通高 < 20 RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-033",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "包含素面结构，位于中京道且高度超过35米的辽塔有哪些？",
+    "expected_answer": [
+      "朝阳北塔",
+      "朝阳南塔",
+      "云接寺塔",
+      "白塔峪塔",
+      "广济寺塔",
+      "广胜寺塔",
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位*1..3]->({通用名称: '素面层'}) MATCH (p)-[:属于历史区域|属于区域*1..5]->({名称: '中京道'}) WHERE p.测量通高 > 35 RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-034",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "位于西京道，结构楼阁式且包含佛像的塔有哪些？",
+    "expected_answer": [
+      "兴文塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '西京道'}) MATCH (p)-[:结构类型为]->({名称: '楼阁式塔'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->(d) WHERE d.名称 CONTAINS '佛像' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-035",
+    "category": "Attribute Intersect",
+    "info_count": 3,
+    "query": "层数为7层，位于上京道且属于全国重点文物保护单位的塔有哪些？",
+    "expected_answer": [
+      "辽释迦佛舍利塔",
+      "上京南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 7}) MATCH (p)-[:属于历史区域|属于区域*1..3]->({名称: '上京道'}) WHERE p.保护级别 CONTAINS '全国' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-036",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "位于辽宁省境内，辽圣宗时期修建，高度超过 40 米且平面形状为 8 角形的塔有哪些？",
+    "expected_answer": [
+      "广胜寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-037",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "位于北京市境内，处于寺庙环境中，包含“飞天”装饰且属于密檐式塔的有哪些？",
+    "expected_answer": [
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:位于环境|空间隶属*1..2]->(e) WHERE e.名称 CONTAINS '寺庙' MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->({名称: '飞天'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-038",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "属于中京道管辖，重熙年间修建，层数为 13 层且属于全国重点文物保护单位的塔有哪些？",
+    "expected_answer": [
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '中京道'}) MATCH (p)-[:属于年号|始建于*1..4]->({名称: '重熙'}) MATCH (p)-[:层数为]->({数值: 13}) WHERE p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-039",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "为了供奉舍利而建，平面形状为 8 角形，包含“铺作层”且属于第三批全国重点文物保护单位的塔有哪些？",
+    "expected_answer": [
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->(m)  MATCH (p)-[:平面形状为]->({名称: '8角形'})  MATCH (p)-[:包含层|包含部位|包含主构件*1..4]->(c) WHERE m.名称 CONTAINS '舍利' AND c.通用名称 CONTAINS '铺作' AND p.保护级别 CONTAINS '第三批' RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-040",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "乾统年间修建，位于辽宁省，包含“飞天”装饰且高度超过 20 米的塔有哪些？",
+    "expected_answer": [
+      "妙峰寺北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..4]->({名称: '乾统'}) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) WHERE p.测量通高 > 20 RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-041",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "平面形状为 8 角形的密檐塔，包含“莲花层”结构且位于水域周边的有哪些？",
+    "expected_answer": [
+      "八棱观塔",
+      "十八里堡塔",
+      "辽滨塔",
+      "天宁寺塔",
+      "天成寺塔",
+      "圣塔院塔",
+      "天宫寺塔",
+      "西岗塔",
+      "南安寺塔",
+      "双塔庵北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..5]->({通用名称: '莲花层'}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-042",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "位于西京道境内，辽兴宗时期修建，高度在 30 米以下且包含“假门”的塔有哪些？",
+    "expected_answer": [
+      "南安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '西京道'}) MATCH (p)-[:属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽兴宗', '重熙', '景福'] MATCH (p)-[:包含层|包含部位|包含主构件|包含装饰*1..7]->(c) WHERE c.名称 CONTAINS '假门' AND p.测量通高 < 30 RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-043",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "位于河北省境内，平面形状为 8 角形，层数为 13 层且包含“地宫”部位的塔有哪些？",
+    "expected_answer": [
+      "南安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '河北省'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:层数为]->({数值: 13})WHERE p.描述 CONTAINS '地宫'  RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-044",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "辽代晚期（1100年后）修建，结构为密檐式，位于田园环境中且包含“佛像”装饰的有哪些？",
+    "expected_answer": [
+      "妙峰寺北塔",
+      "妙峰寺南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->(n) WHERE n.名称 IN ['乾统', '天庆', '保大'] MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:位于环境]->({名称: '田园'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->(d) WHERE d.名称 CONTAINS '佛' RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-045",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "作为风水镇物修建，位于北京市，包含“塔刹”构件且平面形状为 8 角形的塔有哪些？",
+    "expected_answer": [
+      "玉皇塔",
+      "云居寺南塔",
+      "昊天塔",
+      "云居寺塔",
+      "伍侯塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->({名称: '风水镇物'}) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '北京市'}) MATCH (p)-[:包含层|包含部位*1..4]->({类型: '塔刹'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-046",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "属于南京道，平面形状为 8 角形，包含“力士”砖雕且属于全国重点文物保护单位的有哪些？",
+    "expected_answer": [
+      "昊天塔",
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '南京道'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->(d) WHERE d.名称 CONTAINS '力士' AND p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-047",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "高度在 40 米以上，结构楼阁式塔，包含“铺作”构件且位于内蒙古自治区的有哪些？",
+    "expected_answer": [
+      "万部华严经塔",
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '楼阁式塔'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..5]->(c) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '内蒙古自治区'}) WHERE c.通用名称 CONTAINS '铺作' AND p.测量通高 > 40 RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-048",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "清宁年间修建，曾修缮过的，平面形状为 8 角形且属于第五批全国重点文物保护单位的有哪些？",
+    "expected_answer": [
+      "广济寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..4]->({名称: '清宁'}) MATCH (p)-[:经历事件]->({名称: '修缮'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.保护级别 CONTAINS '第五批' RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-049",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "位于北京市内，包含“平座层”结构和“假窗”装饰，且为辽代后期修建的塔有哪些？",
+    "expected_answer": [
+      "云居寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '北京市'})MATCH (p)-[:包含层|包含部位*1..4]->({通用名称: '平座层'})MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->({名称: '假窗'})MATCH (p)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['天祚帝', '乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-050",
+    "category": "Attribute Intersect",
+    "info_count": 4,
+    "query": "层数为 13 层，平面形状为 8 角形，作为墓塔修建且属于省级文物保护单位的塔有哪些？",
+    "expected_answer": [
+      "佛真猞猁迤逻尼塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:空间隶属*1..3]->(m) WHERE (m.名称 CONTAINS '墓' ) AND p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-051",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔位于北京市？",
+    "expected_answer": [
+      "照塔",
+      "云居寺老虎塔",
+      "玉皇塔",
+      "刘师民塔",
+      "鞭塔",
+      "天开塔",
+      "云居寺南塔",
+      "忏悔正慧大师灵塔",
+      "琬公塔",
+      "忏悔上人坟塔",
+      "上方山亭阁式塔",
+      "昊天塔",
+      "天宁寺塔",
+      "法均和尚墓塔",
+      "法均和尚衣钵塔",
+      "云居寺塔",
+      "伍侯塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-052",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔位于内蒙古自治区？",
+    "expected_answer": [
+      "万部华严经塔",
+      "辽释迦佛舍利塔",
+      "五十家子塔",
+      "上京南塔",
+      "大明塔",
+      "静安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-053",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔位于山西省？",
+    "expected_answer": [
+      "辽释迦佛舍利塔",
+      "觉山寺塔",
+      "禅房寺塔",
+      "华严塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '山西省'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-054",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔位于天津市？",
+    "expected_answer": [
+      "天成寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-055",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔位于上京道境内？",
+    "expected_answer": [
+      "辽释迦佛舍利塔",
+      "上京南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..2]->({名称: '上京道'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-056",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔建于辽代早期（907-982）？",
+    "expected_answer": [
+      "十八里堡塔",
+      "宝塔寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于*1..3]->(d) WHERE d.名称 IN ['辽朝早期', '辽太祖', '辽太宗', '辽世宗', '辽穆宗', '辽景宗'] RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-057",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔建于辽代中期（983-1054）？",
+    "expected_answer": [
+      "八棱观塔",
+      "塔营子塔",
+      "无垢净光舍利塔",
+      "广胜寺塔",
+      "农安塔",
+      "天宫寺塔",
+      "南安寺塔",
+      "万部华严经塔",
+      "辽释迦佛舍利塔",
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于|属于年号*1..3]->(d) WHERE d.名称 IN ['辽朝中期', '辽圣宗', '辽兴宗', '统和', '开泰', '太平', '景福', '重熙'] RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-058",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔建于辽代晚期（1055-1125，道宗与天祚帝时期）？",
+    "expected_answer": [
+      "朝阳南塔",
+      "辽滨塔",
+      "高尔山塔",
+      "白塔峪塔",
+      "妙峰寺北塔",
+      "妙峰寺南塔",
+      "广济寺塔",
+      "天宁寺塔",
+      "天宫寺塔",
+      "云居寺塔",
+      "觉山寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于|属于年号*1..3]->(d) WHERE d.名称 IN ['辽朝晚期', '辽道宗', '辽天祚帝', '清宁', '咸雍', '太康', '大安', '寿昌', '寿隆', '乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-059",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔始建于乾统年间？",
+    "expected_answer": [
+      "妙峰寺北塔",
+      "妙峰寺南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:始建于|属于年号*1..3]->({名称: '乾统'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-060",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔始建于重熙年间？",
+    "expected_answer": [
+      "无垢净光舍利塔",
+      "天宫寺塔",
+      "南安寺塔",
+      "辽释迦佛舍利塔",
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:始建于|属于年号*1..3]->({名称: '重熙'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-061",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的结构类型属于楼阁式塔？",
+    "expected_answer": [
+      "玉皇塔",
+      "昊天塔",
+      "兴文塔",
+      "伍侯塔",
+      "万部华严经塔",
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-062",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔被归类为“花塔”？",
+    "expected_answer": [
+      "云居寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '花塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-063",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的层数为 13 层？",
+    "expected_answer": [
+      "五十家子塔",
+      "大明塔",
+      "觉山寺塔",
+      "八棱观塔",
+      "黄花滩塔",
+      "朝阳北塔",
+      "朝阳南塔",
+      "青峰塔",
+      "塔营子塔",
+      "大宝塔",
+      "辽滨塔",
+      "云接寺塔",
+      "崇兴寺西塔",
+      "崇兴寺东塔",
+      "永丰塔",
+      "白塔峪塔",
+      "铁岭白塔",
+      "辽阳白塔",
+      "广济寺塔",
+      "宝塔寺塔",
+      "无垢净光舍利塔",
+      "广胜寺塔",
+      "农安塔",
+      "天宁寺塔",
+      "天成寺塔",
+      "圣塔院塔",
+      "天宫寺塔",
+      "西岗塔",
+      "南安寺塔",
+      "佛真猞猁迤逻尼塔",
+      "双塔庵北塔",
+      "海城金塔",
+      "崇寿寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-064",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的层数为 7 层？",
+    "expected_answer": [
+      "上京南塔",
+      "禅房寺塔",
+      "华严塔",
+      "十八里堡塔",
+      "塔湾塔",
+      "云居寺老虎塔",
+      "鞭塔",
+      "法均和尚墓塔",
+      "万部华严经塔",
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 7}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-065",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的平面形状为 6 角形？",
+    "expected_answer": [
+      "东平房塔",
+      "四官营子塔",
+      "妙峰寺南塔",
+      "刘师民塔",
+      "鞭塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '6角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-066",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的平面形状为 4 角形？",
+    "expected_answer": [
+      "朝阳北塔",
+      "朝阳南塔",
+      "青峰塔",
+      "大宝塔",
+      "云接寺塔",
+      "云居寺老虎塔",
+      "忏悔正慧大师灵塔",
+      "上方山亭阁式塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '4角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-067",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "测量通高在 50 米以上的辽塔有哪些？",
+    "expected_answer": [
+      "大明塔",
+      "辽阳白塔",
+      "广济寺塔",
+      "天宁寺塔",
+      "万部华严经塔",
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 > 50 RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-068",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "测量通高在 10 米以下的辽塔有哪些？",
+    "expected_answer": [
+      "云居寺老虎塔",
+      "刘师民塔",
+      "鞭塔",
+      "忏悔正慧大师灵塔",
+      "琬公塔",
+      "忏悔上人坟塔",
+      "上方山亭阁式塔",
+      "法均和尚衣钵塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 < 10 RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-069",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔被列入第一批全国重点文物保护单位？",
+    "expected_answer": [
+      "大明塔",
+      "大城子塔",
+      "云居寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '第一批' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-070",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔被列入第三批全国重点文物保护单位？",
+    "expected_answer": [
+      "朝阳北塔",
+      "崇兴寺西塔",
+      "崇兴寺东塔",
+      "辽阳白塔",
+      "天宁寺塔",
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '第三批' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-071",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔属于区级文物保护单位？",
+    "expected_answer": [
+      "刘师民塔",
+      "鞭塔",
+      "天开塔",
+      "伍侯塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '区级' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-072",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔属于省级文物保护单位？",
+    "expected_answer": [
+      "五十家子塔",
+      "静安寺塔",
+      "华严塔",
+      "十八里堡塔",
+      "四官营子塔",
+      "大城子塔",
+      "东塔山塔",
+      "大宝塔",
+      "辽滨塔",
+      "高尔山塔",
+      "塔湾塔",
+      "永丰塔",
+      "铁岭白塔",
+      "宝塔寺塔",
+      "天成寺塔",
+      "天宫寺塔",
+      "佛真猞猁迤逻尼塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-073",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的塔身包含“祥云”装饰？",
+    "expected_answer": [
+      "上京南塔",
+      "法均和尚墓塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '祥云'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-074",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的塔身包含“佛名砖”装饰？",
+    "expected_answer": [
+      "农安塔",
+      "宝塔寺塔",
+      "塔营子塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '佛名砖'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-075",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的塔身包含“莲台”装饰？",
+    "expected_answer": [
+      "静安寺塔",
+      "广胜寺塔",
+      "宝塔寺塔",
+      "塔营子塔",
+      "东塔山塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '莲台'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-076",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的塔身包含“飞天”装饰？",
+    "expected_answer": [
+      "东平房塔",
+      "大明塔",
+      "上京南塔",
+      "五十家子塔",
+      "八棱观塔",
+      "十八里堡塔",
+      "黄花滩塔",
+      "东塔山塔",
+      "朝阳北塔",
+      "青峰塔",
+      "塔营子塔",
+      "大宝塔",
+      "辽滨塔",
+      "云接寺塔",
+      "塔湾塔",
+      "崇兴寺西塔",
+      "崇兴寺东塔",
+      "永丰塔",
+      "白塔峪塔",
+      "铁岭白塔",
+      "妙峰寺北塔",
+      "辽阳白塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-077",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔有地宫？",
+    "expected_answer": [
+      "南安寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.描述 CONTAINS '地宫' RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-078",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔使用了龙柱？",
+    "expected_answer": [
+      "禅房寺塔",
+      "天宁寺塔",
+      "天宫寺塔",
+      "万部华严经塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..5]->({名称: '龙柱'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-079",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔使用了经幢柱？",
+    "expected_answer": [
+      "大明塔",
+      "静安寺塔",
+      "法均和尚衣钵塔",
+      "圣塔院塔",
+      "西岗塔",
+      "南安寺塔",
+      "双塔庵北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-080",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的壸门使用了雕花柱？",
+    "expected_answer": [
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-080",
+    "category": "Factual",
+    "info_count": 1,
+    "query": "哪些辽塔的壸门使用了雕花柱？",
+    "expected_answer": [
+      "天宁寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+    "difficulty": "easy"
+  },
+  {
+    "qid": "ATTR-081",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "位于辽宁省境内，但平面形状不是 8 角形的辽塔有哪些？",
+    "expected_answer": [
+      "东平房塔",
+      "四官营子塔",
+      "朝阳北塔",
+      "朝阳南塔",
+      "青峰塔",
+      "大宝塔",
+      "云接寺塔",
+      "妙峰寺南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) WHERE NOT (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-082",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "位于北京市境内，但不属于密檐式结构的辽塔有哪些？",
+    "expected_answer": [
+      "玉皇塔",
+      "忏悔上人坟塔",
+      "上方山亭阁式塔",
+      "昊天塔",
+      "云居寺塔",
+      "伍侯塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) WHERE NOT (p)-[:结构类型为]->({名称: '密檐塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-083",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "历史上属于“南京道”，但在现代行政区划中不在北京市境内的塔有哪些？",
+    "expected_answer": [
+      "天成寺塔",
+      "圣塔院塔",
+      "天宫寺塔",
+      "西岗塔",
+      "智度寺塔",
+      "双塔庵北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '南京道'}) WHERE NOT (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-084",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "属于全国重点文物保护单位，但不是第七批列入的辽塔有哪些？",
+    "expected_answer": [
+      "上京南塔",
+      "大明塔",
+      "觉山寺塔",
+      "禅房寺塔",
+      "塔山塔",
+      "朝阳北塔",
+      "朝阳南塔",
+      "云接寺塔",
+      "崇兴寺西塔",
+      "崇兴寺东塔",
+      "辽阳白塔",
+      "广济寺塔",
+      "农安塔",
+      "昊天塔",
+      "天宁寺塔",
+      "南安寺塔",
+      "兴文塔",
+      "智度寺塔",
+      "云居寺塔",
+      "万部华严经塔",
+      "辽释迦佛舍利塔",
+      "崇寿寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '全国重点' AND NOT p.保护级别 CONTAINS '第七批' RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-085",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "层数为 13 层，但测量通高低于 20 米的辽塔有哪些？",
+    "expected_answer": [
+      "大宝塔",
+      "天成寺塔",
+      "西岗塔",
+      "双塔庵北塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) WHERE p.测量通高 < 20 RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-086",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "位于水域周边，但其修建目的不是为了“供奉佛像”的塔有哪些？",
+    "expected_answer": [
+      "八棱观塔",
+      "辽滨塔",
+      "高尔山塔",
+      "西岗塔",
+      "佛真猞猁迤逻尼塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:位于环境]->({名称: '水域周边'}) WHERE NOT (p)-[:修建目的*1..2]->({名称: '供奉佛像'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-087",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "结构为密檐塔，但不包含“叠涩层”构件的塔有哪些？",
+    "expected_answer": [
+      "大城子塔",
+      "海城金塔",
+      "天宁寺塔",
+      "崇寿寺塔",
+      "农安塔",
+      "天开塔",
+      "上京南塔",
+      "觉山寺塔",
+      "禅房寺塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '密檐塔'}) WHERE NOT (p)-[:包含层|包含部位*1..3]->({通用名称: '叠涩层'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-088",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "位于山西省境内，但不是楼阁式结构的辽塔有哪些？",
+    "expected_answer": [
+      "觉山寺塔",
+      "禅房寺塔",
+      "华严塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '山西省'}) WHERE NOT (p)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-089",
+    "category": "Negative Constraints",
+    "info_count": 2,
+    "query": "测量通高在 20 到 40 米之间，但其平面形状不是 8 角形的塔有哪些？",
+    "expected_answer": [
+      "东平房塔",
+      "青峰塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 > 20 AND p.测量通高 < 40 AND NOT (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-090",
+    "category": "Negative Constraints",
+    "info_count": 3,
+    "query": "塔身包含“佛像”装饰，但没有“飞天”砖雕的辽宁省辽塔有哪些？",
+    "expected_answer": [
+      "妙峰寺南塔",
+      "大城子塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '塔身佛像'}) WHERE NOT (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-091",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "中国现存高度最高的辽代砖塔是哪座？",
+    "expected_answer": [
+      "云居寺南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-092",
+    "category": "Descriptive Identifiers",
+    "info_count": 2,
+    "query": "层数为 13 层的辽塔中高度最高的是哪座？",
+    "expected_answer": [
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-093",
+    "category": "Descriptive Identifiers",
+    "info_count": 2,
+    "query": "层数为 7层的辽塔中高度最高的是哪座？",
+    "expected_answer": [
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+    "difficulty": "Hard"
+  },
+  {
+    "qid": "ATTR-094",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "地理位置最靠南（纬度最小）的辽塔是哪座？",
+    "expected_answer": [
+      "照塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.location.latitude ASC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-095",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "目前记录中地理位置最靠东（经度最大）的辽塔是哪座？",
+    "expected_answer": [
+      "五十家子塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.location.longitude DESC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-096",
+    "category": "Descriptive Identifiers",
+    "info_count": 2,
+    "query": "作为“墓塔”修建的塔中最高的是哪座？",
+    "expected_answer": [
+      "辽释迦佛舍利塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:空间隶属*1..2]->(m) WHERE m.名称 CONTAINS '墓' RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-097",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "包含“飞天”装饰的辽塔中高度最高的是哪座？",
+    "expected_answer": [
+      "大明塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰*1..5]->({名称: '飞天'}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-098",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "地理位置最靠北（纬度最高）的 8 角形辽塔是哪座？",
+    "expected_answer": [
+      "五十家子塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) RETURN p.名称 ORDER BY p.location.latitude DESC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-099",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "坐标最接近 (121.5, 41.5)（锦州附近）的辽塔是哪座？",
+    "expected_answer": [
+      "崇兴寺西塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY abs(p.location.longitude - 121.5) + abs(p.location.latitude - 41.5) ASC LIMIT 1",
+    "difficulty": "Medium"
+  },
+  {
+    "qid": "ATTR-100",
+    "category": "Descriptive Identifiers",
+    "info_count": 1,
+    "query": "最靠近经度116°的三座现存辽塔？",
+    "expected_answer": [
+      "照塔",
+      "昊天塔",
+      "云居寺南塔"
+    ],
+    "cypher_query": "MATCH (p:辽塔) WHERE p.location.longitude > 0 RETURN p.名称, p.location.longitude ORDER BY abs(p.location.longitude - 116.0) ASC LIMIT 3",
+    "difficulty": "Medium"
+  }
+]

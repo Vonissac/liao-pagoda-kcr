@@ -1,0 +1,1 @@
+Global(Sides=8,BaseR=5.0)+a-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-b-h-c-e[col=e1](e11)-f-g[num=2](e1-g10)-k-h-i

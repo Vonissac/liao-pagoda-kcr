@@ -1,0 +1,72 @@
+{
+  "kg": {
+    "source": "kg_testset.json + kg_raw_results.json",
+    "query_record_count": 101,
+    "unique_query_id_count": 100,
+    "overall_kg_p": 0.9583,
+    "overall_kg_r": 0.9604,
+    "overall_kg_f1": 0.9592,
+    "passes_reference_project_kg_baseline": true,
+    "note": "BM25 baseline remains recorded in kg_retrieval_summary.csv; project KG parity is checked against recorded LP-KG answer sets."
+  },
+  "lpsl": {
+    "row_count": 100,
+    "input_parameter_role": "Randomized LPSL stress-test inputs; these values are not inference inputs and should not be interpreted as measured physical-ratio evidence.",
+    "decision_counts": {
+      "Accepted": 74,
+      "Rejected": 26
+    },
+    "conflict_flag_counts": {
+      "0": 74,
+      "1": 26
+    },
+    "stress_validator_replay_pass": true,
+    "stress_validator_bounds": [
+      -2.1,
+      3.0
+    ]
+  },
+  "cbr": {
+    "source": "project_kg_execution_tables/pagodas.csv + testset_ground_truth.json",
+    "valid_samples": 68,
+    "hit_at_1": 0.6912,
+    "hit_at_3": 0.8971,
+    "hit_at_5": 0.9559,
+    "mrr": 0.7995,
+    "passes_reference_project_kg_baseline": true,
+    "top5_order_matches_reference_cases": 68
+  },
+  "cot_ablation": {
+    "section_summary": {
+      "A": {
+        "cell_count": 9,
+        "mean_of_cell_means": 0.5172,
+        "min_cell_mean": 0.3276,
+        "max_cell_mean": 0.7909
+      },
+      "B": {
+        "cell_count": 9,
+        "mean_of_cell_means": 0.3161,
+        "min_cell_mean": 0.2299,
+        "max_cell_mean": 0.7651
+      },
+      "C": {
+        "cell_count": 9,
+        "mean_of_cell_means": 0.25,
+        "min_cell_mean": 0.1928,
+        "max_cell_mean": 0.3534
+      }
+    },
+    "model_section_summary": {
+      "DeepSeek-V3.2|A": 0.6177,
+      "DeepSeek-V3.2|B": 0.4163,
+      "DeepSeek-V3.2|C": 0.2449,
+      "GLM-5.1|A": 0.4212,
+      "GLM-5.1|B": 0.267,
+      "GLM-5.1|C": 0.2457,
+      "Qwen3.5-397B-A17B|A": 0.5127,
+      "Qwen3.5-397B-A17B|B": 0.2651,
+      "Qwen3.5-397B-A17B|C": 0.2595
+    }
+  }
+}

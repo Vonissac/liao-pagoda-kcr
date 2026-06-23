@@ -1,0 +1,1 @@
+Global(Sides=8,BaseR=5.0)+a-c-b-d[type=d1]-e[col=e2](e11-e12-e14)-c-b-d[type=d1]-e[col=e2](e11-e12-e14)-c-b-d[type=d1]-e[col=e2](e11-e12-e14)-c-b-d[type=d1]-e[col=e2](e11-e12-e14)-f-g[num=8](e2-g10)-k-i

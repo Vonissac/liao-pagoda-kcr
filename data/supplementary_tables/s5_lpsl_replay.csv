@@ -1,0 +1,7 @@
+Replay item,Value,Boundary note
+Rows replayed,100,Recorded randomized stress-test rows
+Accepted decisions,74,Reproduced recorded accepted labels
+Rejected decisions,26,Reproduced recorded rejected/conflict labels
+Replay mismatches,0,Zero mismatches in deterministic replay
+Accepted fraction,74.0%,"Diagnostic replay fraction, not a physical morphology claim"
+Observed Input Alpha min/max,-2.1941 / 5.9772,"Randomized stress probes, not inference parameters"

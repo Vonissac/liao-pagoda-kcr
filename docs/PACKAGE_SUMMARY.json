@@ -1,0 +1,19 @@
+{
+  "repository_name": "liao-pagoda-kcr",
+  "manuscript_title": "A Knowledge-Constrained Reasoning Framework Enables Resurrection of Lost Liao Pagodas from Sparse Classical Texts",
+  "file_count_excluding_reproducibility_outputs_and_summary": 181,
+  "top_level_file_counts": {
+    ".gitignore": 1,
+    "README.md": 1,
+    "code": 21,
+    "data": 154,
+    "docs": 5
+  },
+  "top_level_bytes": {
+    ".gitignore": 86,
+    "README.md": 2754,
+    "code": 66642,
+    "data": 71287626,
+    "docs": 4029
+  }
+}

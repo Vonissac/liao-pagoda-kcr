@@ -1,0 +1,11 @@
+{
+  "target_platform": "project KG execution tables",
+  "runtime_requires_neo4j": false,
+  "pagoda_count": 68,
+  "released_execution_table": "data/kg/project_kg_execution_tables/pagodas.csv",
+  "cbr_attribute_corpus": "data/cbr/pagoda_attribute_corpus.csv",
+  "rich_only_pagodas": [
+    "庆州白塔"
+  ],
+  "boundary_note": "Project KG execution tables are released as the public analytical view for query parity and CBR rerun. Full LP-KG graph scale is documented only in data/kg/full_lpkg_neo4j_export."
+}

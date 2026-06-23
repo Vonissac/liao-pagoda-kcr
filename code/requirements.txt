@@ -1,0 +1,3 @@
+# No third-party Python packages are required.
+# The scripts use only the Python standard library.
+# Python 3.8 or later is required; Python 3.11 is recommended.

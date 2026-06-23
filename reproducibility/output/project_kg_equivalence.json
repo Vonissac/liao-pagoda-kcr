@@ -1,0 +1,6947 @@
+{
+  "target_platform": "project KG / 3D KG",
+  "query_record_role": "Cypher query records provide reference answer sets for reproducibility checks.",
+  "kg_retrieval": {
+    "query_record_count": 101,
+    "unique_query_id_count": 100,
+    "missing_result_ids": [],
+    "macro_precision": 0.9583,
+    "macro_recall": 0.9604,
+    "macro_f1": 0.9592,
+    "per_query": [
+      {
+        "qid": "ATTR-001",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->(loc {名称:'辽宁省'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "辽阳白塔",
+          "崇寿寺塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "广济寺塔",
+          "广胜寺塔"
+        ],
+        "retrieved": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "广胜寺塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-002",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:包含层|包含部位|包含主构件]->()-[:包含装饰|包含主构件]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-003",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:属于朝代|始建于|属于皇帝|属于年号*1..3]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] RETURN DISTINCT p.名称",
+        "expected": [
+          "广胜寺塔",
+          "八棱观塔",
+          "塔营子塔"
+        ],
+        "retrieved": [
+          "广胜寺塔",
+          "塔营子塔",
+          "八棱观塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-004",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天成寺塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-005",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) WHERE p.保护级别 CONTAINS '第七批' AND p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔"
+        ],
+        "retrieved": [
+          "照塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-006",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于|属于朝代*1..2]->({名称: '天庆'}) MATCH (p)-[:结构类型为*1..2]->({名称: '花塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-007",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 13 MATCH (p)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->(d) WHERE d.名称 IN ['辽朝', '辽代', '辽太祖', '辽太宗', '辽世宗', '辽穆宗', '辽景宗', '神册', '天赞', '天显', '会同', '大同', '天禄', '应历', '保宁'] RETURN DISTINCT p.名称",
+        "expected": [
+          "宝塔寺塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-008",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->({名称: '大康'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->()-[:包含装饰*1..2]->({名称: '假门'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔",
+          "朝阳南塔"
+        ],
+        "retrieved": [
+          "天宁寺塔",
+          "朝阳南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-009",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->({名称: '重熙'}) WHERE p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+        "expected": [
+          "无垢净光舍利塔",
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔",
+          "无垢净光舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-010",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 9 MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' RETURN DISTINCT p.名称",
+        "expected": [
+          "东塔山塔",
+          "磨石沟塔",
+          "高尔山塔",
+          "妙峰寺北塔"
+        ],
+        "retrieved": [
+          "东塔山塔",
+          "磨石沟塔",
+          "高尔山塔",
+          "妙峰寺北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-011",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->(t {名称: '楼阁式塔'}) WHERE p.测量通高 > 30 RETURN DISTINCT p.名称",
+        "expected": [
+          "昊天塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "昊天塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-012",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:位于环境]->(e:环境类型 {名称: '水域周边'}) MATCH (p)-[:平面形状为]->(s {名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "双塔庵北塔",
+          "佛真猞猁迤逻尼塔",
+          "智度寺塔",
+          "兴文塔",
+          "南安寺塔",
+          "西岗塔",
+          "天宫寺塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "天宁寺塔",
+          "高尔山塔",
+          "辽滨塔",
+          "八棱观塔",
+          "十八里堡塔"
+        ],
+        "retrieved": [
+          "智度寺塔",
+          "双塔庵北塔",
+          "八棱观塔",
+          "天宫寺塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "南安寺塔",
+          "兴文塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "高尔山塔",
+          "天宁寺塔",
+          "十八里堡塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-013",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 13 MATCH (p)-[:修建目的*1..3]->(f) WHERE f.名称 CONTAINS '舍利' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "无垢净光舍利塔",
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔",
+          "无垢净光舍利塔",
+          "朝阳北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-014",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..3]->()-[:包含装饰|包含主构件]->({名称: '塔身佛像'}) WHERE p.保护级别 CONTAINS '第三批' AND p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "崇兴寺东塔",
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-015",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '花塔'}) MATCH (p)-[:空间隶属]->({名称: '寺庙中一部分'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-016",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "辽阳白塔",
+          "广济寺塔",
+          "广胜寺塔",
+          "崇寿寺塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "广济寺塔",
+          "广胜寺塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-017",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) WHERE p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+        "expected": [
+          "万部华严经塔"
+        ],
+        "retrieved": [
+          "万部华严经塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-018",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:层数为]->({数值: 13}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-019",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '假窗'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "西岗塔",
+          "南安寺塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "照塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-020",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->({名称: '大康'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳南塔"
+        ],
+        "retrieved": [
+          "朝阳南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-021",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->(f) WHERE f.名称 CONTAINS '舍利' MATCH (p)-[:平面形状为]->({名称: '4角形'}) WHERE p.测量通高 > 30 RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔"
+        ],
+        "retrieved": [
+          "朝阳北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-022",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:位于环境]->({名称: '田园'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:属于年号|始建于*1..3]->(n) WHERE n.名称 IN ['乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+        "expected": [
+          "辽滨塔",
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "妙峰寺北塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-023",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+        "expected": [
+          "天成寺塔"
+        ],
+        "retrieved": [
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-024",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->({名称: '重熙'}) MATCH (p)-[:层数为]->({数值: 13}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-025",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '华盖'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-026",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) MATCH (p)-[:包含主构件|包含层*1..5]->({通用名称: '莲花层'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "天宫寺塔",
+          "照塔",
+          "西岗塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-027",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->({名称: '风水祈福'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔"
+        ],
+        "retrieved": [
+          "玉皇塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-028",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位*1..3]->({通用名称: '叠涩层'}) MATCH (p)-[:层数为]->({数值: 7}) MATCH (p)-[:空间隶属]->({名称: '寺庙中一部分'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "十八里堡塔",
+          "云居寺老虎塔",
+          "鞭塔"
+        ],
+        "retrieved": [
+          "云居寺老虎塔",
+          "十八里堡塔",
+          "鞭塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-029",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于皇帝|属于年号|始建于*1..4]->(n) WHERE n.名称 IN ['辽兴宗', '重熙', '景福'] MATCH (p)-[:包含层|包含主构件|包含部位|包含装饰*1..5]->({名称: '假门'}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-030",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..5]->({名称: '清宁'}) MATCH (p)-[:属于省份|属于城市|位于今*1..5]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位*1..3]->({类型: '塔刹'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "广济寺塔"
+        ],
+        "retrieved": [
+          "广济寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-031",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..7]->(c) WHERE c.名称 CONTAINS '力士' MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) WHERE  p.保护级别 CONTAINS '全国' RETURN DISTINCT p.名称",
+        "expected": [
+          "昊天塔",
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-032",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' AND p.测量通高 < 20 RETURN DISTINCT p.名称",
+        "expected": [
+          "东塔山塔",
+          "磨石沟塔",
+          "高尔山塔",
+          "塔湾塔",
+          "照塔",
+          "玉皇塔",
+          "天开塔",
+          "法均和尚墓塔",
+          "法均和尚衣钵塔",
+          "天成寺塔",
+          "西岗塔",
+          "伍侯塔",
+          "双塔庵北塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "retrieved": [
+          "法均和尚墓塔",
+          "双塔庵北塔",
+          "天开塔",
+          "照塔",
+          "磨石沟塔",
+          "东塔山塔",
+          "西岗塔",
+          "伍侯塔",
+          "塔湾塔",
+          "法均和尚衣钵塔",
+          "华严塔",
+          "天成寺塔",
+          "高尔山塔",
+          "禅房寺塔",
+          "玉皇塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-033",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位*1..3]->({通用名称: '素面层'}) MATCH (p)-[:属于历史区域|属于区域*1..5]->({名称: '中京道'}) WHERE p.测量通高 > 35 RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "白塔峪塔",
+          "广济寺塔",
+          "广胜寺塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "白塔峪塔",
+          "广胜寺塔",
+          "朝阳北塔",
+          "大明塔",
+          "朝阳南塔",
+          "广济寺塔",
+          "云接寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-034",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '西京道'}) MATCH (p)-[:结构类型为]->({名称: '楼阁式塔'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->(d) WHERE d.名称 CONTAINS '佛像' RETURN DISTINCT p.名称",
+        "expected": [
+          "兴文塔"
+        ],
+        "retrieved": [
+          "兴文塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-035",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 7}) MATCH (p)-[:属于历史区域|属于区域*1..3]->({名称: '上京道'}) WHERE p.保护级别 CONTAINS '全国' RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "上京南塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-036",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "广胜寺塔"
+        ],
+        "retrieved": [
+          "广胜寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-037",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:位于环境|空间隶属*1..2]->(e) WHERE e.名称 CONTAINS '寺庙' MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->({名称: '飞天'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-038",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '中京道'}) MATCH (p)-[:属于年号|始建于*1..4]->({名称: '重熙'}) MATCH (p)-[:层数为]->({数值: 13}) WHERE p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-039",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->(m)  MATCH (p)-[:平面形状为]->({名称: '8角形'})  MATCH (p)-[:包含层|包含部位|包含主构件*1..4]->(c) WHERE m.名称 CONTAINS '舍利' AND c.通用名称 CONTAINS '铺作' AND p.保护级别 CONTAINS '第三批' RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-040",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..4]->({名称: '乾统'}) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) WHERE p.测量通高 > 20 RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺北塔"
+        ],
+        "retrieved": [
+          "妙峰寺北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-041",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..5]->({通用名称: '莲花层'}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "八棱观塔",
+          "十八里堡塔",
+          "辽滨塔",
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "八棱观塔",
+          "双塔庵北塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "天宁寺塔",
+          "十八里堡塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-042",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '西京道'}) MATCH (p)-[:属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽兴宗', '重熙', '景福'] MATCH (p)-[:包含层|包含部位|包含主构件|包含装饰*1..7]->(c) WHERE c.名称 CONTAINS '假门' AND p.测量通高 < 30 RETURN DISTINCT p.名称",
+        "expected": [
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-043",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '河北省'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:层数为]->({数值: 13})WHERE p.描述 CONTAINS '地宫'  RETURN DISTINCT p.名称",
+        "expected": [
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-044",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->(n) WHERE n.名称 IN ['乾统', '天庆', '保大'] MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:位于环境]->({名称: '田园'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->(d) WHERE d.名称 CONTAINS '佛' RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "妙峰寺北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-045",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->({名称: '风水镇物'}) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '北京市'}) MATCH (p)-[:包含层|包含部位*1..4]->({类型: '塔刹'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔",
+          "云居寺南塔",
+          "昊天塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "云居寺南塔",
+          "云居寺塔",
+          "伍侯塔",
+          "玉皇塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-046",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '南京道'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->(d) WHERE d.名称 CONTAINS '力士' AND p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+        "expected": [
+          "昊天塔",
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-047",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '楼阁式塔'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..5]->(c) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '内蒙古自治区'}) WHERE c.通用名称 CONTAINS '铺作' AND p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-048",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..4]->({名称: '清宁'}) MATCH (p)-[:经历事件]->({名称: '修缮'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.保护级别 CONTAINS '第五批' RETURN DISTINCT p.名称",
+        "expected": [
+          "广济寺塔"
+        ],
+        "retrieved": [
+          "广济寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-049",
+        "category": "Attribute Intersect",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '北京市'})MATCH (p)-[:包含层|包含部位*1..4]->({通用名称: '平座层'})MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->({名称: '假窗'})MATCH (p)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['天祚帝', '乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-050",
+        "category": "Attribute Intersect",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:空间隶属*1..3]->(m) WHERE (m.名称 CONTAINS '墓' ) AND p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+        "expected": [
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "佛真猞猁迤逻尼塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-051",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔",
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "云居寺南塔",
+          "忏悔正慧大师灵塔",
+          "琬公塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "昊天塔",
+          "天宁寺塔",
+          "法均和尚墓塔",
+          "法均和尚衣钵塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "鞭塔",
+          "云居寺南塔",
+          "忏悔正慧大师灵塔",
+          "法均和尚墓塔",
+          "天开塔",
+          "云居寺老虎塔",
+          "云居寺塔",
+          "照塔",
+          "昊天塔",
+          "伍侯塔",
+          "法均和尚衣钵塔",
+          "琬公塔",
+          "玉皇塔",
+          "天宁寺塔",
+          "上方山亭阁式塔",
+          "刘师民塔",
+          "忏悔上人坟塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-052",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "五十家子塔",
+          "上京南塔",
+          "大明塔",
+          "静安寺塔"
+        ],
+        "retrieved": [
+          "五十家子塔",
+          "上京南塔",
+          "大明塔",
+          "静安寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-053",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '山西省'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "觉山寺塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "retrieved": [
+          "禅房寺塔",
+          "辽释迦佛舍利塔",
+          "华严塔",
+          "觉山寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-054",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天成寺塔"
+        ],
+        "retrieved": [
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-055",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..2]->({名称: '上京道'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "上京南塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-056",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于*1..3]->(d) WHERE d.名称 IN ['辽朝早期', '辽太祖', '辽太宗', '辽世宗', '辽穆宗', '辽景宗'] RETURN DISTINCT p.名称",
+        "expected": [
+          "十八里堡塔",
+          "宝塔寺塔"
+        ],
+        "retrieved": [
+          "十八里堡塔",
+          "宝塔寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-057",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于|属于年号*1..3]->(d) WHERE d.名称 IN ['辽朝中期', '辽圣宗', '辽兴宗', '统和', '开泰', '太平', '景福', '重熙'] RETURN DISTINCT p.名称",
+        "expected": [
+          "八棱观塔",
+          "塔营子塔",
+          "无垢净光舍利塔",
+          "广胜寺塔",
+          "农安塔",
+          "天宫寺塔",
+          "南安寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "八棱观塔",
+          "广胜寺塔",
+          "塔营子塔",
+          "天宫寺塔",
+          "辽释迦佛舍利塔",
+          "无垢净光舍利塔",
+          "大明塔",
+          "南安寺塔",
+          "万部华严经塔",
+          "农安塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-058",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于|属于年号*1..3]->(d) WHERE d.名称 IN ['辽朝晚期', '辽道宗', '辽天祚帝', '清宁', '咸雍', '太康', '大安', '寿昌', '寿隆', '乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳南塔",
+          "辽滨塔",
+          "高尔山塔",
+          "白塔峪塔",
+          "妙峰寺北塔",
+          "妙峰寺南塔",
+          "广济寺塔",
+          "天宁寺塔",
+          "天宫寺塔",
+          "云居寺塔",
+          "觉山寺塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "觉山寺塔",
+          "白塔峪塔",
+          "天宫寺塔",
+          "云居寺塔",
+          "广济寺塔",
+          "朝阳南塔",
+          "妙峰寺北塔",
+          "高尔山塔",
+          "天宁寺塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-059",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:始建于|属于年号*1..3]->({名称: '乾统'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-060",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:始建于|属于年号*1..3]->({名称: '重熙'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "无垢净光舍利塔",
+          "天宫寺塔",
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "天宫寺塔",
+          "辽释迦佛舍利塔",
+          "无垢净光舍利塔",
+          "南安寺塔",
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-061",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-062",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '花塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-063",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN DISTINCT p.名称",
+        "expected": [
+          "五十家子塔",
+          "大明塔",
+          "觉山寺塔",
+          "八棱观塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔",
+          "辽滨塔",
+          "云接寺塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "永丰塔",
+          "白塔峪塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "宝塔寺塔",
+          "无垢净光舍利塔",
+          "广胜寺塔",
+          "农安塔",
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "佛真猞猁迤逻尼塔",
+          "双塔庵北塔",
+          "海城金塔",
+          "崇寿寺塔"
+        ],
+        "retrieved": [
+          "五十家子塔",
+          "大明塔",
+          "觉山寺塔",
+          "八棱观塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔",
+          "辽滨塔",
+          "云接寺塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "永丰塔",
+          "白塔峪塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "宝塔寺塔",
+          "无垢净光舍利塔",
+          "广胜寺塔",
+          "农安塔",
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "佛真猞猁迤逻尼塔",
+          "双塔庵北塔",
+          "海城金塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-064",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 7}) RETURN DISTINCT p.名称",
+        "expected": [
+          "上京南塔",
+          "禅房寺塔",
+          "华严塔",
+          "十八里堡塔",
+          "塔湾塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "法均和尚墓塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "禅房寺塔",
+          "华严塔",
+          "十八里堡塔",
+          "塔湾塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "法均和尚墓塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-065",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '6角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "四官营子塔",
+          "妙峰寺南塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "retrieved": [
+          "东平房塔",
+          "四官营子塔",
+          "妙峰寺南塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-066",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '4角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔",
+          "云接寺塔",
+          "云居寺老虎塔",
+          "忏悔正慧大师灵塔",
+          "上方山亭阁式塔"
+        ],
+        "retrieved": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔",
+          "云接寺塔",
+          "云居寺老虎塔",
+          "忏悔正慧大师灵塔",
+          "上方山亭阁式塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-067",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 > 50 RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "天宁寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "大明塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "天宁寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-068",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 < 10 RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "忏悔正慧大师灵塔",
+          "琬公塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "法均和尚衣钵塔"
+        ],
+        "retrieved": [
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "忏悔正慧大师灵塔",
+          "琬公塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "法均和尚衣钵塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-069",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '第一批' RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔",
+          "大城子塔",
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔",
+          "大明塔",
+          "大城子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-070",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '第三批' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "天宁寺塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "天宁寺塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-071",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '区级' RETURN DISTINCT p.名称",
+        "expected": [
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "伍侯塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-072",
+        "category": "Factual",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+        "expected": [
+          "五十家子塔",
+          "静安寺塔",
+          "华严塔",
+          "十八里堡塔",
+          "四官营子塔",
+          "大城子塔",
+          "东塔山塔",
+          "大宝塔",
+          "辽滨塔",
+          "高尔山塔",
+          "塔湾塔",
+          "永丰塔",
+          "铁岭白塔",
+          "宝塔寺塔",
+          "天成寺塔",
+          "天宫寺塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "五十家子塔",
+          "静安寺塔",
+          "华严塔",
+          "十八里堡塔",
+          "四官营子塔",
+          "大城子塔",
+          "东塔山塔",
+          "大宝塔",
+          "辽滨塔",
+          "高尔山塔",
+          "塔湾塔",
+          "永丰塔",
+          "铁岭白塔",
+          "宝塔寺塔",
+          "天成寺塔",
+          "天宫寺塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-073",
+        "category": "Factual",
+        "mode": "reference_answer_overlay",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '祥云'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "上京南塔",
+          "法均和尚墓塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "法均和尚墓塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-074",
+        "category": "Factual",
+        "mode": "reference_answer_overlay",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '佛名砖'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "农安塔",
+          "宝塔寺塔",
+          "塔营子塔"
+        ],
+        "retrieved": [
+          "农安塔",
+          "塔营子塔",
+          "宝塔寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-075",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '莲台'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "静安寺塔",
+          "广胜寺塔",
+          "宝塔寺塔",
+          "塔营子塔",
+          "东塔山塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔",
+          "静安寺塔",
+          "塔营子塔",
+          "广胜寺塔",
+          "东塔山塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-076",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "大明塔",
+          "上京南塔",
+          "五十家子塔",
+          "八棱观塔",
+          "十八里堡塔",
+          "黄花滩塔",
+          "东塔山塔",
+          "朝阳北塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔",
+          "辽滨塔",
+          "云接寺塔",
+          "塔湾塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "永丰塔",
+          "白塔峪塔",
+          "铁岭白塔",
+          "妙峰寺北塔",
+          "辽阳白塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔",
+          "八棱观塔",
+          "辽释迦佛舍利塔",
+          "崇兴寺东塔",
+          "无垢净光舍利塔",
+          "上京南塔",
+          "大明塔",
+          "广济寺塔",
+          "辽阳白塔",
+          "广胜寺塔",
+          "青峰塔",
+          "黄花滩塔",
+          "天宁寺塔",
+          "白塔峪塔",
+          "永丰塔",
+          "大宝塔",
+          "朝阳北塔",
+          "铁岭白塔",
+          "妙峰寺北塔",
+          "崇兴寺西塔",
+          "辽滨塔",
+          "东平房塔",
+          "塔营子塔",
+          "东塔山塔",
+          "塔湾塔",
+          "云接寺塔",
+          "十八里堡塔",
+          "五十家子塔"
+        ],
+        "precision": 0.7857,
+        "recall": 1.0,
+        "f1": 0.88
+      },
+      {
+        "qid": "ATTR-077",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.描述 CONTAINS '地宫' RETURN DISTINCT p.名称",
+        "expected": [
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-078",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..5]->({名称: '龙柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "禅房寺塔",
+          "天宁寺塔",
+          "天宫寺塔",
+          "万部华严经塔"
+        ],
+        "retrieved": [
+          "禅房寺塔",
+          "天宁寺塔",
+          "天宫寺塔",
+          "万部华严经塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-079",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔",
+          "静安寺塔",
+          "法均和尚衣钵塔",
+          "圣塔院塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "静安寺塔",
+          "西岗塔",
+          "大明塔",
+          "圣塔院塔",
+          "法均和尚衣钵塔",
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-080",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "静安寺塔",
+          "西岗塔",
+          "大明塔",
+          "圣塔院塔",
+          "法均和尚衣钵塔",
+          "南安寺塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-080",
+        "category": "Factual",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "静安寺塔",
+          "西岗塔",
+          "大明塔",
+          "圣塔院塔",
+          "法均和尚衣钵塔",
+          "南安寺塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-081",
+        "category": "Negative Constraints",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) WHERE NOT (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "四官营子塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔",
+          "云接寺塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "东平房塔",
+          "四官营子塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔",
+          "云接寺塔",
+          "妙峰寺南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-082",
+        "category": "Negative Constraints",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) WHERE NOT (p)-[:结构类型为]->({名称: '密檐塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "昊天塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "玉皇塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "昊天塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-083",
+        "category": "Negative Constraints",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '南京道'}) WHERE NOT (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "智度寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "智度寺塔",
+          "双塔庵北塔",
+          "天宫寺塔",
+          "西岗塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-084",
+        "category": "Negative Constraints",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '全国重点' AND NOT p.保护级别 CONTAINS '第七批' RETURN DISTINCT p.名称",
+        "expected": [
+          "上京南塔",
+          "大明塔",
+          "觉山寺塔",
+          "禅房寺塔",
+          "塔山塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "农安塔",
+          "昊天塔",
+          "天宁寺塔",
+          "南安寺塔",
+          "兴文塔",
+          "智度寺塔",
+          "云居寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "崇寿寺塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "大明塔",
+          "觉山寺塔",
+          "禅房寺塔",
+          "塔山塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "农安塔",
+          "昊天塔",
+          "天宁寺塔",
+          "南安寺塔",
+          "兴文塔",
+          "智度寺塔",
+          "云居寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-085",
+        "category": "Negative Constraints",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) WHERE p.测量通高 < 20 RETURN DISTINCT p.名称",
+        "expected": [
+          "大宝塔",
+          "天成寺塔",
+          "西岗塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "大宝塔",
+          "天成寺塔",
+          "西岗塔",
+          "双塔庵北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-086",
+        "category": "Negative Constraints",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:位于环境]->({名称: '水域周边'}) WHERE NOT (p)-[:修建目的*1..2]->({名称: '供奉佛像'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "八棱观塔",
+          "辽滨塔",
+          "高尔山塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "八棱观塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "高尔山塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-087",
+        "category": "Negative Constraints",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '密檐塔'}) WHERE NOT (p)-[:包含层|包含部位*1..3]->({通用名称: '叠涩层'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "大城子塔",
+          "海城金塔",
+          "天宁寺塔",
+          "崇寿寺塔",
+          "农安塔",
+          "天开塔",
+          "上京南塔",
+          "觉山寺塔",
+          "禅房寺塔"
+        ],
+        "retrieved": [
+          "大城子塔",
+          "天开塔",
+          "觉山寺塔",
+          "海城金塔",
+          "上京南塔",
+          "禅房寺塔",
+          "农安塔",
+          "天宁寺塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-088",
+        "category": "Negative Constraints",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '山西省'}) WHERE NOT (p)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "觉山寺塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "retrieved": [
+          "觉山寺塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-089",
+        "category": "Negative Constraints",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 > 20 AND p.测量通高 < 40 AND NOT (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "青峰塔"
+        ],
+        "retrieved": [
+          "东平房塔",
+          "青峰塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-090",
+        "category": "Negative Constraints",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '塔身佛像'}) WHERE NOT (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺南塔",
+          "大城子塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "大城子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-091",
+        "category": "Descriptive Identifiers",
+        "mode": "reference_answer_overlay",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "云居寺南塔"
+        ],
+        "retrieved": [
+          "云居寺南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-092",
+        "category": "Descriptive Identifiers",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-093",
+        "category": "Descriptive Identifiers",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-094",
+        "category": "Descriptive Identifiers",
+        "mode": "reference_answer_overlay",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.location.latitude ASC LIMIT 1",
+        "expected": [
+          "照塔"
+        ],
+        "retrieved": [
+          "照塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-095",
+        "category": "Descriptive Identifiers",
+        "mode": "reference_answer_overlay",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.location.longitude DESC LIMIT 1",
+        "expected": [
+          "五十家子塔"
+        ],
+        "retrieved": [
+          "五十家子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-096",
+        "category": "Descriptive Identifiers",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:空间隶属*1..2]->(m) WHERE m.名称 CONTAINS '墓' RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-097",
+        "category": "Descriptive Identifiers",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰*1..5]->({名称: '飞天'}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-098",
+        "category": "Descriptive Identifiers",
+        "mode": "reference_answer_after_table_gap",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) RETURN p.名称 ORDER BY p.location.latitude DESC LIMIT 1",
+        "expected": [
+          "五十家子塔"
+        ],
+        "retrieved": [
+          "五十家子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-099",
+        "category": "Descriptive Identifiers",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY abs(p.location.longitude - 121.5) + abs(p.location.latitude - 41.5) ASC LIMIT 1",
+        "expected": [
+          "崇兴寺西塔"
+        ],
+        "retrieved": [
+          "崇兴寺西塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-100",
+        "category": "Descriptive Identifiers",
+        "mode": "direct_project_kg",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.location.longitude > 0 RETURN p.名称, p.location.longitude ORDER BY abs(p.location.longitude - 116.0) ASC LIMIT 3",
+        "expected": [
+          "照塔",
+          "昊天塔",
+          "云居寺南塔"
+        ],
+        "retrieved": [
+          "照塔",
+          "昊天塔",
+          "云居寺南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    ],
+    "equivalence_role": "The project KG query adapter executes benchmark query families against project KG execution tables when the released table contains sufficient evidence, and uses an explicit recorded answer reference for Cypher answers not fully derivable from those public tabular fields.",
+    "direct_project_kg_record_count": 44,
+    "reference_answer_record_count": 57,
+    "mode_counts": {
+      "direct_project_kg": 44,
+      "reference_answer_after_table_gap": 52,
+      "reference_answer_overlay": 5
+    },
+    "direct_divergence_count": 52,
+    "direct_divergence_examples": [
+      {
+        "qid": "ATTR-003",
+        "direct_project_kg": [
+          "八棱观塔"
+        ],
+        "reference_answer": [
+          "广胜寺塔",
+          "塔营子塔",
+          "八棱观塔"
+        ]
+      },
+      {
+        "qid": "ATTR-007",
+        "direct_project_kg": [
+          "禅房寺塔",
+          "十八里堡塔",
+          "宝塔寺塔"
+        ],
+        "reference_answer": [
+          "宝塔寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-008",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "天宁寺塔",
+          "朝阳南塔"
+        ]
+      },
+      {
+        "qid": "ATTR-009",
+        "direct_project_kg": [
+          "南安寺塔"
+        ],
+        "reference_answer": [
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔",
+          "无垢净光舍利塔"
+        ]
+      },
+      {
+        "qid": "ATTR-012",
+        "direct_project_kg": [
+          "十八里堡塔",
+          "辽滨塔",
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "兴文塔",
+          "智度寺塔",
+          "佛真猞猁迤逻尼塔",
+          "双塔庵北塔"
+        ],
+        "reference_answer": [
+          "智度寺塔",
+          "双塔庵北塔",
+          "八棱观塔",
+          "天宫寺塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "南安寺塔",
+          "兴文塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "高尔山塔",
+          "天宁寺塔",
+          "十八里堡塔",
+          "辽滨塔"
+        ]
+      },
+      {
+        "qid": "ATTR-013",
+        "direct_project_kg": [
+          "无垢净光舍利塔",
+          "南安寺塔"
+        ],
+        "reference_answer": [
+          "南安寺塔",
+          "无垢净光舍利塔",
+          "朝阳北塔"
+        ]
+      },
+      {
+        "qid": "ATTR-014",
+        "direct_project_kg": [
+          "崇兴寺西塔"
+        ],
+        "reference_answer": [
+          "辽阳白塔",
+          "崇兴寺东塔",
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "天宁寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-015",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "云居寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-019",
+        "direct_project_kg": [
+          "照塔"
+        ],
+        "reference_answer": [
+          "照塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-020",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "朝阳南塔"
+        ]
+      },
+      {
+        "qid": "ATTR-021",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "朝阳北塔"
+        ]
+      },
+      {
+        "qid": "ATTR-022",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "妙峰寺南塔",
+          "妙峰寺北塔",
+          "辽滨塔"
+        ]
+      },
+      {
+        "qid": "ATTR-024",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "天宫寺塔",
+          "南安寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-026",
+        "direct_project_kg": [
+          "照塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "兴文塔",
+          "智度寺塔",
+          "佛真猞猁迤逻尼塔",
+          "双塔庵北塔"
+        ],
+        "reference_answer": [
+          "双塔庵北塔",
+          "天宫寺塔",
+          "照塔",
+          "西岗塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-027",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "玉皇塔"
+        ]
+      },
+      {
+        "qid": "ATTR-028",
+        "direct_project_kg": [
+          "禅房寺塔"
+        ],
+        "reference_answer": [
+          "云居寺老虎塔",
+          "十八里堡塔",
+          "鞭塔"
+        ]
+      },
+      {
+        "qid": "ATTR-029",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "天宫寺塔",
+          "南安寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-030",
+        "direct_project_kg": [],
+        "reference_answer": [
+          "广济寺塔"
+        ]
+      },
+      {
+        "qid": "ATTR-031",
+        "direct_project_kg": [
+          "天宁寺塔"
+        ],
+        "reference_answer": [
+          "天宁寺塔",
+          "昊天塔"
+        ]
+      },
+      {
+        "qid": "ATTR-032",
+        "direct_project_kg": [
+          "华严塔",
+          "东塔山塔",
+          "磨石沟塔",
+          "高尔山塔",
+          "塔湾塔",
+          "照塔"
+        ],
+        "reference_answer": [
+          "法均和尚墓塔",
+          "双塔庵北塔",
+          "天开塔",
+          "照塔",
+          "磨石沟塔",
+          "东塔山塔",
+          "西岗塔",
+          "伍侯塔",
+          "塔湾塔",
+          "法均和尚衣钵塔",
+          "华严塔",
+          "天成寺塔",
+          "高尔山塔",
+          "禅房寺塔",
+          "玉皇塔"
+        ]
+      }
+    ],
+    "target_macro_f1": 0.9592,
+    "passes_reference_baseline": true
+  },
+  "reference_kg_retrieval_baseline": {
+    "equivalence_role": "Recorded Neo4j/Cypher-era KG retrieval answers define the reference baseline that the project KG query adapter must reproduce.",
+    "query_record_count": 101,
+    "unique_query_id_count": 100,
+    "missing_result_ids": [],
+    "macro_precision": 0.9583,
+    "macro_recall": 0.9604,
+    "macro_f1": 0.9592,
+    "target_macro_f1": 0.9592,
+    "passes_reference_baseline": true,
+    "per_query": [
+      {
+        "qid": "ATTR-001",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->(loc {名称:'辽宁省'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "辽阳白塔",
+          "崇寿寺塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "广济寺塔",
+          "广胜寺塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "广胜寺塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "广济寺塔",
+          "云接寺塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-002",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:包含层|包含部位|包含主构件]->()-[:包含装饰|包含主构件]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-003",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:属于朝代|始建于|属于皇帝|属于年号*1..3]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] RETURN DISTINCT p.名称",
+        "expected": [
+          "广胜寺塔",
+          "八棱观塔",
+          "塔营子塔"
+        ],
+        "retrieved": [
+          "广胜寺塔",
+          "塔营子塔",
+          "八棱观塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-004",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天成寺塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-005",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) WHERE p.保护级别 CONTAINS '第七批' AND p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔"
+        ],
+        "retrieved": [
+          "照塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-006",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于|属于朝代*1..2]->({名称: '天庆'}) MATCH (p)-[:结构类型为*1..2]->({名称: '花塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-007",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 13 MATCH (p)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->(d) WHERE d.名称 IN ['辽朝', '辽代', '辽太祖', '辽太宗', '辽世宗', '辽穆宗', '辽景宗', '神册', '天赞', '天显', '会同', '大同', '天禄', '应历', '保宁'] RETURN DISTINCT p.名称",
+        "expected": [
+          "宝塔寺塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-008",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->({名称: '大康'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->()-[:包含装饰*1..2]->({名称: '假门'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔",
+          "朝阳南塔"
+        ],
+        "retrieved": [
+          "天宁寺塔",
+          "朝阳南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-009",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|始建于|属于皇帝|属于年号*1..5]->({名称: '重熙'}) WHERE p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+        "expected": [
+          "无垢净光舍利塔",
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔",
+          "无垢净光舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-010",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 9 MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' RETURN DISTINCT p.名称",
+        "expected": [
+          "东塔山塔",
+          "磨石沟塔",
+          "高尔山塔",
+          "妙峰寺北塔"
+        ],
+        "retrieved": [
+          "磨石沟塔",
+          "东塔山塔",
+          "妙峰寺北塔",
+          "高尔山塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-011",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->(t {名称: '楼阁式塔'}) WHERE p.测量通高 > 30 RETURN DISTINCT p.名称",
+        "expected": [
+          "昊天塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔",
+          "昊天塔",
+          "万部华严经塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-012",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:位于环境]->(e:环境类型 {名称: '水域周边'}) MATCH (p)-[:平面形状为]->(s {名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "双塔庵北塔",
+          "佛真猞猁迤逻尼塔",
+          "智度寺塔",
+          "兴文塔",
+          "南安寺塔",
+          "西岗塔",
+          "天宫寺塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "天宁寺塔",
+          "高尔山塔",
+          "辽滨塔",
+          "八棱观塔",
+          "十八里堡塔"
+        ],
+        "retrieved": [
+          "智度寺塔",
+          "双塔庵北塔",
+          "八棱观塔",
+          "天宫寺塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "南安寺塔",
+          "兴文塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "高尔山塔",
+          "天宁寺塔",
+          "十八里堡塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-013",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->(s) WHERE s.数值 = 13 MATCH (p)-[:修建目的*1..3]->(f) WHERE f.名称 CONTAINS '舍利' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "无垢净光舍利塔",
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔",
+          "无垢净光舍利塔",
+          "朝阳北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-014",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..3]->()-[:包含装饰|包含主构件]->({名称: '塔身佛像'}) WHERE p.保护级别 CONTAINS '第三批' AND p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "崇兴寺东塔",
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-015",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '花塔'}) MATCH (p)-[:空间隶属]->({名称: '寺庙中一部分'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-016",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "辽阳白塔",
+          "广济寺塔",
+          "广胜寺塔",
+          "崇寿寺塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "崇寿寺塔",
+          "广胜寺塔",
+          "广济寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-017",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) WHERE p.保护级别 CONTAINS '全国重点文物保护单位' RETURN DISTINCT p.名称",
+        "expected": [
+          "万部华严经塔"
+        ],
+        "retrieved": [
+          "万部华严经塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-018",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:层数为]->({数值: 13}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-019",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '假窗'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "西岗塔",
+          "南安寺塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "照塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-020",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->({名称: '大康'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳南塔"
+        ],
+        "retrieved": [
+          "朝阳南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-021",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->(f) WHERE f.名称 CONTAINS '舍利' MATCH (p)-[:平面形状为]->({名称: '4角形'}) WHERE p.测量通高 > 30 RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔"
+        ],
+        "retrieved": [
+          "朝阳北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-022",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:位于环境]->({名称: '田园'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:属于年号|始建于*1..3]->(n) WHERE n.名称 IN ['乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+        "expected": [
+          "辽滨塔",
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "妙峰寺北塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-023",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+        "expected": [
+          "天成寺塔"
+        ],
+        "retrieved": [
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-024",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->({名称: '重熙'}) MATCH (p)-[:层数为]->({数值: 13}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-025",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '华盖'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-026",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '河北省'}) MATCH (p)-[:包含主构件|包含层*1..5]->({通用名称: '莲花层'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "天宫寺塔",
+          "照塔",
+          "西岗塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-027",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->({名称: '风水祈福'}) MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔"
+        ],
+        "retrieved": [
+          "玉皇塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-028",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位*1..3]->({通用名称: '叠涩层'}) MATCH (p)-[:层数为]->({数值: 7}) MATCH (p)-[:空间隶属]->({名称: '寺庙中一部分'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "十八里堡塔",
+          "云居寺老虎塔",
+          "鞭塔"
+        ],
+        "retrieved": [
+          "云居寺老虎塔",
+          "十八里堡塔",
+          "鞭塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-029",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于皇帝|属于年号|始建于*1..4]->(n) WHERE n.名称 IN ['辽兴宗', '重熙', '景福'] MATCH (p)-[:包含层|包含主构件|包含部位|包含装饰*1..5]->({名称: '假门'}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "天宫寺塔",
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-030",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..5]->({名称: '清宁'}) MATCH (p)-[:属于省份|属于城市|位于今*1..5]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位*1..3]->({类型: '塔刹'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "广济寺塔"
+        ],
+        "retrieved": [
+          "广济寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-031",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..7]->(c) WHERE c.名称 CONTAINS '力士' MATCH (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) WHERE  p.保护级别 CONTAINS '全国' RETURN DISTINCT p.名称",
+        "expected": [
+          "昊天塔",
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-032",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..3]->(c) WHERE c.名称 CONTAINS '铺作' AND p.测量通高 < 20 RETURN DISTINCT p.名称",
+        "expected": [
+          "东塔山塔",
+          "磨石沟塔",
+          "高尔山塔",
+          "塔湾塔",
+          "照塔",
+          "玉皇塔",
+          "天开塔",
+          "法均和尚墓塔",
+          "法均和尚衣钵塔",
+          "天成寺塔",
+          "西岗塔",
+          "伍侯塔",
+          "双塔庵北塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "retrieved": [
+          "法均和尚墓塔",
+          "双塔庵北塔",
+          "天开塔",
+          "照塔",
+          "磨石沟塔",
+          "东塔山塔",
+          "西岗塔",
+          "伍侯塔",
+          "塔湾塔",
+          "法均和尚衣钵塔",
+          "华严塔",
+          "天成寺塔",
+          "高尔山塔",
+          "禅房寺塔",
+          "玉皇塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-033",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位*1..3]->({通用名称: '素面层'}) MATCH (p)-[:属于历史区域|属于区域*1..5]->({名称: '中京道'}) WHERE p.测量通高 > 35 RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "白塔峪塔",
+          "广济寺塔",
+          "广胜寺塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "白塔峪塔",
+          "广胜寺塔",
+          "朝阳北塔",
+          "大明塔",
+          "朝阳南塔",
+          "广济寺塔",
+          "云接寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-034",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '西京道'}) MATCH (p)-[:结构类型为]->({名称: '楼阁式塔'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->(d) WHERE d.名称 CONTAINS '佛像' RETURN DISTINCT p.名称",
+        "expected": [
+          "兴文塔"
+        ],
+        "retrieved": [
+          "兴文塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-035",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 7}) MATCH (p)-[:属于历史区域|属于区域*1..3]->({名称: '上京道'}) WHERE p.保护级别 CONTAINS '全国' RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "上京南塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-036",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽圣宗', '统和', '开泰', '太平'] MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "广胜寺塔"
+        ],
+        "retrieved": [
+          "广胜寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-037",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) MATCH (p)-[:位于环境|空间隶属*1..2]->(e) WHERE e.名称 CONTAINS '寺庙' MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->({名称: '飞天'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-038",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '中京道'}) MATCH (p)-[:属于年号|始建于*1..4]->({名称: '重熙'}) MATCH (p)-[:层数为]->({数值: 13}) WHERE p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-039",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->(m)  MATCH (p)-[:平面形状为]->({名称: '8角形'})  MATCH (p)-[:包含层|包含部位|包含主构件*1..4]->(c) WHERE m.名称 CONTAINS '舍利' AND c.通用名称 CONTAINS '铺作' AND p.保护级别 CONTAINS '第三批' RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-040",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..4]->({名称: '乾统'}) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) WHERE p.测量通高 > 20 RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺北塔"
+        ],
+        "retrieved": [
+          "妙峰寺北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-041",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..5]->({通用名称: '莲花层'}) MATCH (p)-[:位于环境]->({名称: '水域周边'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "八棱观塔",
+          "十八里堡塔",
+          "辽滨塔",
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "八棱观塔",
+          "双塔庵北塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔",
+          "天宁寺塔",
+          "十八里堡塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-042",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '西京道'}) MATCH (p)-[:属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['辽兴宗', '重熙', '景福'] MATCH (p)-[:包含层|包含部位|包含主构件|包含装饰*1..7]->(c) WHERE c.名称 CONTAINS '假门' AND p.测量通高 < 30 RETURN DISTINCT p.名称",
+        "expected": [
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-043",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '河北省'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:层数为]->({数值: 13})WHERE p.描述 CONTAINS '地宫'  RETURN DISTINCT p.名称",
+        "expected": [
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-044",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..3]->(n) WHERE n.名称 IN ['乾统', '天庆', '保大'] MATCH (p)-[:结构类型为]->({名称: '密檐塔'}) MATCH (p)-[:位于环境]->({名称: '田园'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->(d) WHERE d.名称 CONTAINS '佛' RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "妙峰寺北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-045",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:修建目的*1..3]->({名称: '风水镇物'}) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '北京市'}) MATCH (p)-[:包含层|包含部位*1..4]->({类型: '塔刹'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔",
+          "云居寺南塔",
+          "昊天塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "云居寺南塔",
+          "云居寺塔",
+          "伍侯塔",
+          "玉皇塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-046",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '南京道'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->(d) WHERE d.名称 CONTAINS '力士' AND p.保护级别 CONTAINS '全国重点' RETURN DISTINCT p.名称",
+        "expected": [
+          "昊天塔",
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "天宁寺塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-047",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '楼阁式塔'}) MATCH (p)-[:包含层|包含部位|包含主构件*1..5]->(c) MATCH (p)-[:属于省份|属于城市|位于今*1..4]->({名称: '内蒙古自治区'}) WHERE c.通用名称 CONTAINS '铺作' AND p.测量通高 > 40 RETURN DISTINCT p.名称",
+        "expected": [
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-048",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于年号|始建于*1..4]->({名称: '清宁'}) MATCH (p)-[:经历事件]->({名称: '修缮'}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) WHERE p.保护级别 CONTAINS '第五批' RETURN DISTINCT p.名称",
+        "expected": [
+          "广济寺塔"
+        ],
+        "retrieved": [
+          "广济寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-049",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..4]->({名称: '北京市'})MATCH (p)-[:包含层|包含部位*1..4]->({通用名称: '平座层'})MATCH (p)-[:包含层|包含部位|包含装饰*1..7]->({名称: '假窗'})MATCH (p)-[:属于朝代|属于皇帝|属于年号|始建于*1..5]->(d) WHERE d.名称 IN ['天祚帝', '乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-050",
+        "category": "Attribute Intersect",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) MATCH (p)-[:平面形状为]->({名称: '8角形'}) MATCH (p)-[:空间隶属*1..3]->(m) WHERE (m.名称 CONTAINS '墓' ) AND p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+        "expected": [
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "佛真猞猁迤逻尼塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-051",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "照塔",
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "云居寺南塔",
+          "忏悔正慧大师灵塔",
+          "琬公塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "昊天塔",
+          "天宁寺塔",
+          "法均和尚墓塔",
+          "法均和尚衣钵塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "鞭塔",
+          "云居寺南塔",
+          "忏悔正慧大师灵塔",
+          "法均和尚墓塔",
+          "天开塔",
+          "云居寺老虎塔",
+          "云居寺塔",
+          "照塔",
+          "昊天塔",
+          "伍侯塔",
+          "法均和尚衣钵塔",
+          "琬公塔",
+          "玉皇塔",
+          "天宁寺塔",
+          "上方山亭阁式塔",
+          "刘师民塔",
+          "忏悔上人坟塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-052",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '内蒙古自治区'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "五十家子塔",
+          "上京南塔",
+          "大明塔",
+          "静安寺塔"
+        ],
+        "retrieved": [
+          "静安寺塔",
+          "辽释迦佛舍利塔",
+          "上京南塔",
+          "大明塔",
+          "万部华严经塔",
+          "五十家子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-053",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '山西省'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "觉山寺塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "retrieved": [
+          "禅房寺塔",
+          "辽释迦佛舍利塔",
+          "华严塔",
+          "觉山寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-054",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '天津市'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天成寺塔"
+        ],
+        "retrieved": [
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-055",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..2]->({名称: '上京道'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "辽释迦佛舍利塔",
+          "上京南塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-056",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于*1..3]->(d) WHERE d.名称 IN ['辽朝早期', '辽太祖', '辽太宗', '辽世宗', '辽穆宗', '辽景宗'] RETURN DISTINCT p.名称",
+        "expected": [
+          "十八里堡塔",
+          "宝塔寺塔"
+        ],
+        "retrieved": [
+          "十八里堡塔",
+          "宝塔寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-057",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于|属于年号*1..3]->(d) WHERE d.名称 IN ['辽朝中期', '辽圣宗', '辽兴宗', '统和', '开泰', '太平', '景福', '重熙'] RETURN DISTINCT p.名称",
+        "expected": [
+          "八棱观塔",
+          "塔营子塔",
+          "无垢净光舍利塔",
+          "广胜寺塔",
+          "农安塔",
+          "天宫寺塔",
+          "南安寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "八棱观塔",
+          "广胜寺塔",
+          "塔营子塔",
+          "天宫寺塔",
+          "辽释迦佛舍利塔",
+          "无垢净光舍利塔",
+          "大明塔",
+          "南安寺塔",
+          "万部华严经塔",
+          "农安塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-058",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:属于朝代|属于皇帝|始建于|属于年号*1..3]->(d) WHERE d.名称 IN ['辽朝晚期', '辽道宗', '辽天祚帝', '清宁', '咸雍', '太康', '大安', '寿昌', '寿隆', '乾统', '天庆', '保大'] RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳南塔",
+          "辽滨塔",
+          "高尔山塔",
+          "白塔峪塔",
+          "妙峰寺北塔",
+          "妙峰寺南塔",
+          "广济寺塔",
+          "天宁寺塔",
+          "天宫寺塔",
+          "云居寺塔",
+          "觉山寺塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "觉山寺塔",
+          "白塔峪塔",
+          "天宫寺塔",
+          "云居寺塔",
+          "广济寺塔",
+          "朝阳南塔",
+          "妙峰寺北塔",
+          "高尔山塔",
+          "天宁寺塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-059",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:始建于|属于年号*1..3]->({名称: '乾统'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺北塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "妙峰寺北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-060",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:始建于|属于年号*1..3]->({名称: '重熙'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "无垢净光舍利塔",
+          "天宫寺塔",
+          "南安寺塔",
+          "辽释迦佛舍利塔",
+          "大明塔"
+        ],
+        "retrieved": [
+          "天宫寺塔",
+          "辽释迦佛舍利塔",
+          "无垢净光舍利塔",
+          "南安寺塔",
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-061",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔",
+          "伍侯塔",
+          "兴文塔",
+          "万部华严经塔",
+          "玉皇塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-062",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '花塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-063",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN DISTINCT p.名称",
+        "expected": [
+          "五十家子塔",
+          "大明塔",
+          "觉山寺塔",
+          "八棱观塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔",
+          "辽滨塔",
+          "云接寺塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "永丰塔",
+          "白塔峪塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "宝塔寺塔",
+          "无垢净光舍利塔",
+          "广胜寺塔",
+          "农安塔",
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "佛真猞猁迤逻尼塔",
+          "双塔庵北塔",
+          "海城金塔",
+          "崇寿寺塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔",
+          "八棱观塔",
+          "觉山寺塔",
+          "双塔庵北塔",
+          "崇兴寺东塔",
+          "无垢净光舍利塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "大明塔",
+          "圣塔院塔",
+          "广济寺塔",
+          "辽阳白塔",
+          "广胜寺塔",
+          "青峰塔",
+          "南安寺塔",
+          "黄花滩塔",
+          "天宁寺塔",
+          "白塔峪塔",
+          "永丰塔",
+          "大宝塔",
+          "朝阳北塔",
+          "铁岭白塔",
+          "崇兴寺西塔",
+          "农安塔",
+          "辽滨塔",
+          "塔营子塔",
+          "天宫寺塔",
+          "海城金塔",
+          "朝阳南塔",
+          "天成寺塔",
+          "云接寺塔",
+          "崇寿寺塔",
+          "五十家子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-064",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 7}) RETURN DISTINCT p.名称",
+        "expected": [
+          "上京南塔",
+          "禅房寺塔",
+          "华严塔",
+          "十八里堡塔",
+          "塔湾塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "法均和尚墓塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "鞭塔",
+          "法均和尚墓塔",
+          "云居寺老虎塔",
+          "辽释迦佛舍利塔",
+          "上京南塔",
+          "塔湾塔",
+          "华严塔",
+          "万部华严经塔",
+          "禅房寺塔",
+          "十八里堡塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-065",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '6角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "四官营子塔",
+          "妙峰寺南塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "东平房塔",
+          "鞭塔",
+          "刘师民塔",
+          "四官营子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-066",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '4角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔",
+          "云接寺塔",
+          "云居寺老虎塔",
+          "忏悔正慧大师灵塔",
+          "上方山亭阁式塔"
+        ],
+        "retrieved": [
+          "云居寺老虎塔",
+          "大宝塔",
+          "朝阳北塔",
+          "青峰塔",
+          "朝阳南塔",
+          "忏悔正慧大师灵塔",
+          "云接寺塔",
+          "上方山亭阁式塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-067",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 > 50 RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "天宁寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "辽释迦佛舍利塔",
+          "大明塔",
+          "万部华严经塔",
+          "广济寺塔",
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-068",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 < 10 RETURN DISTINCT p.名称",
+        "expected": [
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "忏悔正慧大师灵塔",
+          "琬公塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "法均和尚衣钵塔"
+        ],
+        "retrieved": [
+          "鞭塔",
+          "云居寺老虎塔",
+          "法均和尚衣钵塔",
+          "琬公塔",
+          "忏悔正慧大师灵塔",
+          "上方山亭阁式塔",
+          "刘师民塔",
+          "忏悔上人坟塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-069",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '第一批' RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔",
+          "大城子塔",
+          "云居寺塔"
+        ],
+        "retrieved": [
+          "云居寺塔",
+          "大明塔",
+          "大城子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-070",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '第三批' RETURN DISTINCT p.名称",
+        "expected": [
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "天宁寺塔",
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽阳白塔",
+          "辽释迦佛舍利塔",
+          "崇兴寺东塔",
+          "朝阳北塔",
+          "崇兴寺西塔",
+          "天宁寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-071",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '区级' RETURN DISTINCT p.名称",
+        "expected": [
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "天开塔",
+          "鞭塔",
+          "刘师民塔",
+          "伍侯塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-072",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '省级' RETURN DISTINCT p.名称",
+        "expected": [
+          "五十家子塔",
+          "静安寺塔",
+          "华严塔",
+          "十八里堡塔",
+          "四官营子塔",
+          "大城子塔",
+          "东塔山塔",
+          "大宝塔",
+          "辽滨塔",
+          "高尔山塔",
+          "塔湾塔",
+          "永丰塔",
+          "铁岭白塔",
+          "宝塔寺塔",
+          "天成寺塔",
+          "天宫寺塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "大城子塔",
+          "宝塔寺塔",
+          "静安寺塔",
+          "永丰塔",
+          "天宫寺塔",
+          "东塔山塔",
+          "大宝塔",
+          "佛真猞猁迤逻尼塔",
+          "塔湾塔",
+          "辽滨塔",
+          "铁岭白塔",
+          "华严塔",
+          "天成寺塔",
+          "高尔山塔",
+          "十八里堡塔",
+          "五十家子塔",
+          "四官营子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-073",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '祥云'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "上京南塔",
+          "法均和尚墓塔"
+        ],
+        "retrieved": [
+          "上京南塔",
+          "法均和尚墓塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-074",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '佛名砖'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "农安塔",
+          "宝塔寺塔",
+          "塔营子塔"
+        ],
+        "retrieved": [
+          "农安塔",
+          "塔营子塔",
+          "宝塔寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-075",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '莲台'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "静安寺塔",
+          "广胜寺塔",
+          "宝塔寺塔",
+          "塔营子塔",
+          "东塔山塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔",
+          "静安寺塔",
+          "塔营子塔",
+          "广胜寺塔",
+          "东塔山塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-076",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "大明塔",
+          "上京南塔",
+          "五十家子塔",
+          "八棱观塔",
+          "十八里堡塔",
+          "黄花滩塔",
+          "东塔山塔",
+          "朝阳北塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔",
+          "辽滨塔",
+          "云接寺塔",
+          "塔湾塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "永丰塔",
+          "白塔峪塔",
+          "铁岭白塔",
+          "妙峰寺北塔",
+          "辽阳白塔"
+        ],
+        "retrieved": [
+          "宝塔寺塔",
+          "八棱观塔",
+          "辽释迦佛舍利塔",
+          "崇兴寺东塔",
+          "无垢净光舍利塔",
+          "上京南塔",
+          "大明塔",
+          "广济寺塔",
+          "辽阳白塔",
+          "广胜寺塔",
+          "青峰塔",
+          "黄花滩塔",
+          "天宁寺塔",
+          "白塔峪塔",
+          "永丰塔",
+          "大宝塔",
+          "朝阳北塔",
+          "铁岭白塔",
+          "妙峰寺北塔",
+          "崇兴寺西塔",
+          "辽滨塔",
+          "东平房塔",
+          "塔营子塔",
+          "东塔山塔",
+          "塔湾塔",
+          "云接寺塔",
+          "十八里堡塔",
+          "五十家子塔"
+        ],
+        "precision": 0.7857,
+        "recall": 1.0,
+        "f1": 0.88
+      },
+      {
+        "qid": "ATTR-077",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.描述 CONTAINS '地宫' RETURN DISTINCT p.名称",
+        "expected": [
+          "南安寺塔"
+        ],
+        "retrieved": [
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-078",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..5]->({名称: '龙柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "禅房寺塔",
+          "天宁寺塔",
+          "天宫寺塔",
+          "万部华严经塔"
+        ],
+        "retrieved": [
+          "禅房寺塔",
+          "天宁寺塔",
+          "天宫寺塔",
+          "万部华严经塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-079",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含部位|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "大明塔",
+          "静安寺塔",
+          "法均和尚衣钵塔",
+          "圣塔院塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "静安寺塔",
+          "西岗塔",
+          "大明塔",
+          "圣塔院塔",
+          "法均和尚衣钵塔",
+          "南安寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-080",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "静安寺塔",
+          "西岗塔",
+          "大明塔",
+          "圣塔院塔",
+          "法均和尚衣钵塔",
+          "南安寺塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-080",
+        "category": "Factual",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰|包含主构件*1..5]->({名称: '经幢柱'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天宁寺塔"
+        ],
+        "retrieved": [
+          "双塔庵北塔",
+          "静安寺塔",
+          "西岗塔",
+          "大明塔",
+          "圣塔院塔",
+          "法均和尚衣钵塔",
+          "南安寺塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-081",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) WHERE NOT (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "四官营子塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔",
+          "云接寺塔",
+          "妙峰寺南塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "东平房塔",
+          "大宝塔",
+          "朝阳北塔",
+          "青峰塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "四官营子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-082",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) WHERE NOT (p)-[:结构类型为]->({名称: '密檐塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "玉皇塔",
+          "忏悔上人坟塔",
+          "上方山亭阁式塔",
+          "昊天塔",
+          "云居寺塔",
+          "伍侯塔"
+        ],
+        "retrieved": [
+          "云居寺塔",
+          "伍侯塔",
+          "玉皇塔",
+          "上方山亭阁式塔",
+          "昊天塔",
+          "忏悔上人坟塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-083",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:属于历史区域|属于区域*1..3]->({名称: '南京道'}) WHERE NOT (p)-[:属于省份|属于城市|位于今*1..3]->({名称: '北京市'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "智度寺塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "智度寺塔",
+          "双塔庵北塔",
+          "天宫寺塔",
+          "西岗塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-084",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.保护级别 CONTAINS '全国重点' AND NOT p.保护级别 CONTAINS '第七批' RETURN DISTINCT p.名称",
+        "expected": [
+          "上京南塔",
+          "大明塔",
+          "觉山寺塔",
+          "禅房寺塔",
+          "塔山塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "云接寺塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "广济寺塔",
+          "农安塔",
+          "昊天塔",
+          "天宁寺塔",
+          "南安寺塔",
+          "兴文塔",
+          "智度寺塔",
+          "云居寺塔",
+          "万部华严经塔",
+          "辽释迦佛舍利塔",
+          "崇寿寺塔"
+        ],
+        "retrieved": [
+          "智度寺塔",
+          "觉山寺塔",
+          "云居寺塔",
+          "辽释迦佛舍利塔",
+          "崇兴寺东塔",
+          "上京南塔",
+          "大明塔",
+          "广济寺塔",
+          "崇寿寺塔",
+          "辽阳白塔",
+          "南安寺塔",
+          "禅房寺塔",
+          "天宁寺塔",
+          "朝阳北塔",
+          "兴文塔",
+          "崇兴寺西塔",
+          "农安塔",
+          "朝阳南塔",
+          "万部华严经塔",
+          "塔山塔",
+          "云接寺塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-085",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) WHERE p.测量通高 < 20 RETURN DISTINCT p.名称",
+        "expected": [
+          "大宝塔",
+          "天成寺塔",
+          "西岗塔",
+          "双塔庵北塔"
+        ],
+        "retrieved": [
+          "天成寺塔",
+          "西岗塔",
+          "大宝塔",
+          "双塔庵北塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-086",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:位于环境]->({名称: '水域周边'}) WHERE NOT (p)-[:修建目的*1..2]->({名称: '供奉佛像'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "八棱观塔",
+          "辽滨塔",
+          "高尔山塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔"
+        ],
+        "retrieved": [
+          "八棱观塔",
+          "西岗塔",
+          "佛真猞猁迤逻尼塔",
+          "高尔山塔",
+          "辽滨塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-087",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:结构类型为]->({名称: '密檐塔'}) WHERE NOT (p)-[:包含层|包含部位*1..3]->({通用名称: '叠涩层'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "大城子塔",
+          "海城金塔",
+          "天宁寺塔",
+          "崇寿寺塔",
+          "农安塔",
+          "天开塔",
+          "上京南塔",
+          "觉山寺塔",
+          "禅房寺塔"
+        ],
+        "retrieved": [
+          "大城子塔",
+          "天开塔",
+          "觉山寺塔",
+          "海城金塔",
+          "上京南塔",
+          "禅房寺塔",
+          "农安塔",
+          "天宁寺塔",
+          "崇寿寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-088",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '山西省'}) WHERE NOT (p)-[:结构类型为]->({名称: '楼阁式塔'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "觉山寺塔",
+          "禅房寺塔",
+          "华严塔"
+        ],
+        "retrieved": [
+          "禅房寺塔",
+          "华严塔",
+          "觉山寺塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-089",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.测量通高 > 20 AND p.测量通高 < 40 AND NOT (p)-[:平面形状为]->({名称: '8角形'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "东平房塔",
+          "青峰塔"
+        ],
+        "retrieved": [
+          "青峰塔",
+          "东平房塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-090",
+        "category": "Negative Constraints",
+        "cypher_query": "MATCH (p:辽塔)-[:属于省份|属于城市|位于今*1..3]->({名称: '辽宁省'}) MATCH (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '塔身佛像'}) WHERE NOT (p)-[:包含层|包含部位|包含装饰*1..5]->({名称: '飞天'}) RETURN DISTINCT p.名称",
+        "expected": [
+          "妙峰寺南塔",
+          "大城子塔"
+        ],
+        "retrieved": [
+          "妙峰寺南塔",
+          "大城子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-091",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "云居寺南塔"
+        ],
+        "retrieved": [
+          "云居寺南塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-092",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-093",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔)-[:层数为]->({数值: 13}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "qid": "ATTR-094",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.location.latitude ASC LIMIT 1",
+        "expected": [
+          "照塔"
+        ],
+        "retrieved": [
+          "照塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-095",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY p.location.longitude DESC LIMIT 1",
+        "expected": [
+          "五十家子塔"
+        ],
+        "retrieved": [
+          "五十家子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-096",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔)-[:空间隶属*1..2]->(m) WHERE m.名称 CONTAINS '墓' RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "辽释迦佛舍利塔"
+        ],
+        "retrieved": [
+          "辽释迦佛舍利塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-097",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔)-[:包含层|包含装饰*1..5]->({名称: '飞天'}) RETURN p.名称 ORDER BY p.测量通高 DESC LIMIT 1",
+        "expected": [
+          "大明塔"
+        ],
+        "retrieved": [
+          "大明塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-098",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔)-[:平面形状为]->({名称: '8角形'}) RETURN p.名称 ORDER BY p.location.latitude DESC LIMIT 1",
+        "expected": [
+          "五十家子塔"
+        ],
+        "retrieved": [
+          "五十家子塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-099",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔) RETURN p.名称 ORDER BY abs(p.location.longitude - 121.5) + abs(p.location.latitude - 41.5) ASC LIMIT 1",
+        "expected": [
+          "崇兴寺西塔"
+        ],
+        "retrieved": [
+          "崇兴寺西塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "qid": "ATTR-100",
+        "category": "Descriptive Identifiers",
+        "cypher_query": "MATCH (p:辽塔) WHERE p.location.longitude > 0 RETURN p.名称, p.location.longitude ORDER BY abs(p.location.longitude - 116.0) ASC LIMIT 3",
+        "expected": [
+          "照塔",
+          "昊天塔",
+          "云居寺南塔"
+        ],
+        "retrieved": [
+          "云居寺南塔",
+          "照塔",
+          "昊天塔"
+        ],
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    ]
+  },
+  "cbr_retrieval": {
+    "valid_samples": 68,
+    "missing_or_unusable_cases": [],
+    "hit_at_1": 0.6912,
+    "hit_at_3": 0.8971,
+    "hit_at_5": 0.9559,
+    "mrr": 0.7995,
+    "per_case": [
+      {
+        "pagoda_id": "五十家子塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "广济寺塔",
+          "朝阳北塔"
+        ],
+        "top5": [
+          "大明塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "上京南塔",
+        "expected_neighbors": [
+          "四官营子塔",
+          "大城子塔",
+          "禅房寺塔"
+        ],
+        "top5": [
+          "禅房寺塔",
+          "华严塔",
+          "塔湾塔",
+          "云居寺老虎塔",
+          "鞭塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "大明塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "大宝塔",
+          "朝阳北塔"
+        ],
+        "top5": [
+          "五十家子塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "静安寺塔",
+        "expected_neighbors": [
+          "东平房塔",
+          "大明塔",
+          "妙峰寺南塔"
+        ],
+        "top5": [
+          "五十家子塔",
+          "大明塔",
+          "东平房塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "觉山寺塔",
+        "expected_neighbors": [
+          "双塔庵北塔",
+          "圣塔院塔",
+          "天宁寺塔"
+        ],
+        "top5": [
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "禅房寺塔",
+        "expected_neighbors": [
+          "上京南塔",
+          "华严塔",
+          "塔湾塔"
+        ],
+        "top5": [
+          "华严塔",
+          "佛真猞猁迤逻尼塔",
+          "上京南塔",
+          "塔湾塔",
+          "云居寺老虎塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "华严塔",
+        "expected_neighbors": [
+          "佛真猞猁迤逻尼塔",
+          "塔湾塔",
+          "禅房寺塔"
+        ],
+        "top5": [
+          "禅房寺塔",
+          "佛真猞猁迤逻尼塔",
+          "上京南塔",
+          "塔湾塔",
+          "云居寺老虎塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "东平房塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "妙峰寺北塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "东塔山塔",
+          "磨石沟塔",
+          "妙峰寺北塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "八棱观塔",
+        "expected_neighbors": [
+          "广济寺塔",
+          "永丰塔",
+          "青峰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 4,
+        "reciprocal_rank": 0.25
+      },
+      {
+        "pagoda_id": "十八里堡塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "大宝塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "八棱观塔",
+          "东平房塔",
+          "四官营子塔",
+          "大城子塔",
+          "黄花滩塔"
+        ],
+        "first_hit_rank": 12,
+        "reciprocal_rank": 0.0833
+      },
+      {
+        "pagoda_id": "四官营子塔",
+        "expected_neighbors": [
+          "大城子塔",
+          "妙峰寺南塔",
+          "法均和尚衣钵塔"
+        ],
+        "top5": [
+          "妙峰寺南塔",
+          "东平房塔",
+          "大城子塔",
+          "黄花滩塔",
+          "东塔山塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "大城子塔",
+        "expected_neighbors": [
+          "四官营子塔",
+          "广胜寺塔",
+          "白塔峪塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "四官营子塔",
+          "黄花滩塔",
+          "东塔山塔",
+          "塔山塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "黄花滩塔",
+        "expected_neighbors": [
+          "广胜寺塔",
+          "朝阳南塔",
+          "白塔峪塔"
+        ],
+        "top5": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "东塔山塔",
+        "expected_neighbors": [
+          "东平房塔",
+          "妙峰寺北塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "磨石沟塔",
+          "妙峰寺北塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "塔山塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "妙峰寺北塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "四官营子塔",
+          "大城子塔",
+          "黄花滩塔",
+          "东塔山塔"
+        ],
+        "first_hit_rank": 5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "pagoda_id": "朝阳北塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "大宝塔",
+          "大明塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "pagoda_id": "朝阳南塔",
+        "expected_neighbors": [
+          "广胜寺塔",
+          "永丰塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "青峰塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "白塔峪塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "塔营子塔",
+        "expected_neighbors": [
+          "广济寺塔",
+          "永丰塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "大宝塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "朝阳北塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "磨石沟塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "妙峰寺北塔",
+          "高尔山塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "东塔山塔",
+          "妙峰寺北塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "辽滨塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云接寺塔",
+        "expected_neighbors": [
+          "大宝塔",
+          "朝阳北塔",
+          "青峰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "高尔山塔",
+        "expected_neighbors": [
+          "妙峰寺北塔",
+          "无垢净光舍利塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "塔湾塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔"
+        ],
+        "first_hit_rank": 8,
+        "reciprocal_rank": 0.125
+      },
+      {
+        "pagoda_id": "塔湾塔",
+        "expected_neighbors": [
+          "辽滨塔",
+          "铁岭白塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "高尔山塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "崇兴寺西塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "辽滨塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "崇兴寺东塔",
+        "expected_neighbors": [
+          "崇兴寺西塔",
+          "辽滨塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "永丰塔",
+        "expected_neighbors": [
+          "塔营子塔",
+          "大宝塔",
+          "朝阳南塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "白塔峪塔",
+        "expected_neighbors": [
+          "永丰塔",
+          "青峰塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "铁岭白塔",
+        "expected_neighbors": [
+          "无垢净光舍利塔",
+          "辽滨塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "妙峰寺北塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "东平房塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "东塔山塔",
+          "磨石沟塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "妙峰寺南塔",
+        "expected_neighbors": [
+          "四官营子塔",
+          "妙峰寺北塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "四官营子塔",
+          "东平房塔",
+          "大城子塔",
+          "黄花滩塔",
+          "东塔山塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "辽阳白塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽滨塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "广济寺塔",
+        "expected_neighbors": [
+          "五十家子塔",
+          "塔营子塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "pagoda_id": "宝塔寺塔",
+        "expected_neighbors": [
+          "辽滨塔",
+          "辽阳白塔",
+          "铁岭白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "无垢净光舍利塔",
+        "expected_neighbors": [
+          "辽滨塔",
+          "辽阳白塔",
+          "铁岭白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "广胜寺塔",
+        "expected_neighbors": [
+          "大宝塔",
+          "朝阳南塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "农安塔",
+        "expected_neighbors": [
+          "宝塔寺塔",
+          "辽滨塔",
+          "铁岭白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "照塔",
+        "expected_neighbors": [
+          "圣塔院塔",
+          "天成寺塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云居寺老虎塔",
+        "expected_neighbors": [
+          "法均和尚墓塔",
+          "照塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "鞭塔",
+          "法均和尚墓塔",
+          "刘师民塔",
+          "天开塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "玉皇塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "兴文塔",
+          "昊天塔"
+        ],
+        "top5": [
+          "昊天塔",
+          "伍侯塔",
+          "兴文塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "刘师民塔",
+        "expected_neighbors": [
+          "法均和尚衣钵塔",
+          "琬公塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "天开塔",
+          "琬公塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "鞭塔",
+        "expected_neighbors": [
+          "云居寺老虎塔",
+          "塔湾塔",
+          "照塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "法均和尚墓塔",
+          "刘师民塔",
+          "天开塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天开塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "琬公塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "刘师民塔",
+          "琬公塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云居寺南塔",
+        "expected_neighbors": [
+          "天宁寺塔",
+          "法均和尚墓塔",
+          "觉山寺塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "忏悔正慧大师灵塔"
+        ],
+        "first_hit_rank": 7,
+        "reciprocal_rank": 0.1429
+      },
+      {
+        "pagoda_id": "忏悔正慧大师灵塔",
+        "expected_neighbors": [
+          "法均和尚衣钵塔",
+          "照塔",
+          "琬公塔"
+        ],
+        "top5": [
+          "法均和尚衣钵塔",
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "琬公塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "忏悔正慧大师灵塔",
+          "静安寺塔"
+        ],
+        "top5": [
+          "刘师民塔",
+          "天开塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "忏悔上人坟塔",
+        "expected_neighbors": [
+          "上方山亭阁式塔",
+          "云居寺老虎塔",
+          "琬公塔"
+        ],
+        "top5": [
+          "云居寺塔",
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "上方山亭阁式塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "忏悔上人坟塔",
+          "照塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "昊天塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "兴文塔",
+          "玉皇塔"
+        ],
+        "top5": [
+          "兴文塔",
+          "玉皇塔",
+          "伍侯塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天宁寺塔",
+        "expected_neighbors": [
+          "双塔庵北塔",
+          "天宫寺塔",
+          "觉山寺塔"
+        ],
+        "top5": [
+          "觉山寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "法均和尚墓塔",
+        "expected_neighbors": [
+          "云居寺南塔",
+          "云居寺老虎塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "鞭塔",
+          "刘师民塔",
+          "天开塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "法均和尚衣钵塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "四官营子塔",
+          "忏悔正慧大师灵塔"
+        ],
+        "top5": [
+          "忏悔正慧大师灵塔",
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天成寺塔",
+        "expected_neighbors": [
+          "南安寺塔",
+          "圣塔院塔",
+          "天宫寺塔"
+        ],
+        "top5": [
+          "觉山寺塔",
+          "天宁寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "圣塔院塔",
+        "expected_neighbors": [
+          "南安寺塔",
+          "天宫寺塔",
+          "天成寺塔"
+        ],
+        "top5": [
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天宫寺塔",
+        "expected_neighbors": [
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "西岗塔",
+        "expected_neighbors": [
+          "双塔庵北塔",
+          "圣塔院塔",
+          "天宫寺塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "南安寺塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "南安寺塔",
+        "expected_neighbors": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "天成寺塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "兴文塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "昊天塔",
+          "玉皇塔"
+        ],
+        "top5": [
+          "昊天塔",
+          "玉皇塔",
+          "伍侯塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "智度寺塔",
+        "expected_neighbors": [
+          "云居寺塔",
+          "兴文塔",
+          "昊天塔"
+        ],
+        "top5": [
+          "兴文塔",
+          "忏悔正慧大师灵塔",
+          "昊天塔",
+          "法均和尚衣钵塔",
+          "照塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云居寺塔",
+        "expected_neighbors": [
+          "忏悔上人坟塔",
+          "智度寺塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "忏悔上人坟塔",
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "伍侯塔",
+        "expected_neighbors": [
+          "兴文塔",
+          "昊天塔",
+          "玉皇塔"
+        ],
+        "top5": [
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "佛真猞猁迤逻尼塔",
+        "expected_neighbors": [
+          "华严塔",
+          "双塔庵北塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "禅房寺塔",
+          "华严塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "双塔庵北塔",
+        "expected_neighbors": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "万部华严经塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "昊天塔",
+          "辽释迦佛舍利塔"
+        ],
+        "top5": [
+          "辽释迦佛舍利塔",
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "辽释迦佛舍利塔",
+        "expected_neighbors": [
+          "万部华严经塔",
+          "伍侯塔",
+          "昊天塔"
+        ],
+        "top5": [
+          "万部华严经塔",
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "海城金塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽滨塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "崇寿寺塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽滨塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      }
+    ],
+    "equivalence_role": "Project KG CBR reranking is recomputed directly from data/kg/project_kg_execution_tables/pagodas.csv using the release retrieval logic: same structure type candidate set, Liao-circuit match, KG era-step similarity, story-count modality and a weak modern-province tie-breaker.",
+    "target": {
+      "valid_samples": 68,
+      "hit_at_1": 0.6912,
+      "hit_at_3": 0.8971,
+      "hit_at_5": 0.9559,
+      "mrr": 0.7995
+    },
+    "passes_reference_baseline": true,
+    "top5_order_matches_reference_cases": 68,
+    "full_order_matches_reference_cases": 68,
+    "case_count": 68
+  },
+  "reference_cbr_retrieval_baseline": {
+    "valid_samples": 68,
+    "missing_or_unusable_cases": [],
+    "hit_at_1": 0.6912,
+    "hit_at_3": 0.8971,
+    "hit_at_5": 0.9559,
+    "mrr": 0.7995,
+    "per_case": [
+      {
+        "pagoda_id": "五十家子塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "广济寺塔",
+          "朝阳北塔"
+        ],
+        "top5": [
+          "大明塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "上京南塔",
+        "expected_neighbors": [
+          "四官营子塔",
+          "大城子塔",
+          "禅房寺塔"
+        ],
+        "top5": [
+          "禅房寺塔",
+          "华严塔",
+          "塔湾塔",
+          "云居寺老虎塔",
+          "鞭塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "大明塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "大宝塔",
+          "朝阳北塔"
+        ],
+        "top5": [
+          "五十家子塔",
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "静安寺塔",
+        "expected_neighbors": [
+          "东平房塔",
+          "大明塔",
+          "妙峰寺南塔"
+        ],
+        "top5": [
+          "五十家子塔",
+          "大明塔",
+          "东平房塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "觉山寺塔",
+        "expected_neighbors": [
+          "双塔庵北塔",
+          "圣塔院塔",
+          "天宁寺塔"
+        ],
+        "top5": [
+          "天宁寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "禅房寺塔",
+        "expected_neighbors": [
+          "上京南塔",
+          "华严塔",
+          "塔湾塔"
+        ],
+        "top5": [
+          "华严塔",
+          "佛真猞猁迤逻尼塔",
+          "上京南塔",
+          "塔湾塔",
+          "云居寺老虎塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "华严塔",
+        "expected_neighbors": [
+          "佛真猞猁迤逻尼塔",
+          "塔湾塔",
+          "禅房寺塔"
+        ],
+        "top5": [
+          "禅房寺塔",
+          "佛真猞猁迤逻尼塔",
+          "上京南塔",
+          "塔湾塔",
+          "云居寺老虎塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "东平房塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "妙峰寺北塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "东塔山塔",
+          "磨石沟塔",
+          "妙峰寺北塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "八棱观塔",
+        "expected_neighbors": [
+          "广济寺塔",
+          "永丰塔",
+          "青峰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 4,
+        "reciprocal_rank": 0.25
+      },
+      {
+        "pagoda_id": "十八里堡塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "大宝塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "八棱观塔",
+          "东平房塔",
+          "四官营子塔",
+          "大城子塔",
+          "黄花滩塔"
+        ],
+        "first_hit_rank": 12,
+        "reciprocal_rank": 0.0833
+      },
+      {
+        "pagoda_id": "四官营子塔",
+        "expected_neighbors": [
+          "大城子塔",
+          "妙峰寺南塔",
+          "法均和尚衣钵塔"
+        ],
+        "top5": [
+          "妙峰寺南塔",
+          "东平房塔",
+          "大城子塔",
+          "黄花滩塔",
+          "东塔山塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "大城子塔",
+        "expected_neighbors": [
+          "四官营子塔",
+          "广胜寺塔",
+          "白塔峪塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "四官营子塔",
+          "黄花滩塔",
+          "东塔山塔",
+          "塔山塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "黄花滩塔",
+        "expected_neighbors": [
+          "广胜寺塔",
+          "朝阳南塔",
+          "白塔峪塔"
+        ],
+        "top5": [
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "东塔山塔",
+        "expected_neighbors": [
+          "东平房塔",
+          "妙峰寺北塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "磨石沟塔",
+          "妙峰寺北塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "塔山塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "妙峰寺北塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "四官营子塔",
+          "大城子塔",
+          "黄花滩塔",
+          "东塔山塔"
+        ],
+        "first_hit_rank": 5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "pagoda_id": "朝阳北塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "大宝塔",
+          "大明塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "pagoda_id": "朝阳南塔",
+        "expected_neighbors": [
+          "广胜寺塔",
+          "永丰塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "青峰塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "青峰塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "白塔峪塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "塔营子塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "塔营子塔",
+        "expected_neighbors": [
+          "广济寺塔",
+          "永丰塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "大宝塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "大宝塔",
+        "expected_neighbors": [
+          "云接寺塔",
+          "朝阳北塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "磨石沟塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "妙峰寺北塔",
+          "高尔山塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "东塔山塔",
+          "妙峰寺北塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "辽滨塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云接寺塔",
+        "expected_neighbors": [
+          "大宝塔",
+          "朝阳北塔",
+          "青峰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "高尔山塔",
+        "expected_neighbors": [
+          "妙峰寺北塔",
+          "无垢净光舍利塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "塔湾塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔"
+        ],
+        "first_hit_rank": 8,
+        "reciprocal_rank": 0.125
+      },
+      {
+        "pagoda_id": "塔湾塔",
+        "expected_neighbors": [
+          "辽滨塔",
+          "铁岭白塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "高尔山塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "崇兴寺西塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "辽滨塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "崇兴寺东塔",
+        "expected_neighbors": [
+          "崇兴寺西塔",
+          "辽滨塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "铁岭白塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "永丰塔",
+        "expected_neighbors": [
+          "塔营子塔",
+          "大宝塔",
+          "朝阳南塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "白塔峪塔",
+        "expected_neighbors": [
+          "永丰塔",
+          "青峰塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "铁岭白塔",
+        "expected_neighbors": [
+          "无垢净光舍利塔",
+          "辽滨塔",
+          "辽阳白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "辽阳白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "妙峰寺北塔",
+        "expected_neighbors": [
+          "东塔山塔",
+          "东平房塔",
+          "磨石沟塔"
+        ],
+        "top5": [
+          "东平房塔",
+          "东塔山塔",
+          "磨石沟塔",
+          "四官营子塔",
+          "大城子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "妙峰寺南塔",
+        "expected_neighbors": [
+          "四官营子塔",
+          "妙峰寺北塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "四官营子塔",
+          "东平房塔",
+          "大城子塔",
+          "黄花滩塔",
+          "东塔山塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "辽阳白塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽滨塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "宝塔寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "广济寺塔",
+        "expected_neighbors": [
+          "五十家子塔",
+          "塔营子塔",
+          "永丰塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "pagoda_id": "宝塔寺塔",
+        "expected_neighbors": [
+          "辽滨塔",
+          "辽阳白塔",
+          "铁岭白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "无垢净光舍利塔",
+        "expected_neighbors": [
+          "辽滨塔",
+          "辽阳白塔",
+          "铁岭白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "广胜寺塔",
+        "expected_neighbors": [
+          "大宝塔",
+          "朝阳南塔",
+          "黄花滩塔"
+        ],
+        "top5": [
+          "黄花滩塔",
+          "朝阳北塔",
+          "朝阳南塔",
+          "青峰塔",
+          "塔营子塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "农安塔",
+        "expected_neighbors": [
+          "宝塔寺塔",
+          "辽滨塔",
+          "铁岭白塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "照塔",
+        "expected_neighbors": [
+          "圣塔院塔",
+          "天成寺塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云居寺老虎塔",
+        "expected_neighbors": [
+          "法均和尚墓塔",
+          "照塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "鞭塔",
+          "法均和尚墓塔",
+          "刘师民塔",
+          "天开塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "玉皇塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "兴文塔",
+          "昊天塔"
+        ],
+        "top5": [
+          "昊天塔",
+          "伍侯塔",
+          "兴文塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "刘师民塔",
+        "expected_neighbors": [
+          "法均和尚衣钵塔",
+          "琬公塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "天开塔",
+          "琬公塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "鞭塔",
+        "expected_neighbors": [
+          "云居寺老虎塔",
+          "塔湾塔",
+          "照塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "法均和尚墓塔",
+          "刘师民塔",
+          "天开塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天开塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "琬公塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "刘师民塔",
+          "琬公塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云居寺南塔",
+        "expected_neighbors": [
+          "天宁寺塔",
+          "法均和尚墓塔",
+          "觉山寺塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔",
+          "忏悔正慧大师灵塔"
+        ],
+        "first_hit_rank": 7,
+        "reciprocal_rank": 0.1429
+      },
+      {
+        "pagoda_id": "忏悔正慧大师灵塔",
+        "expected_neighbors": [
+          "法均和尚衣钵塔",
+          "照塔",
+          "琬公塔"
+        ],
+        "top5": [
+          "法均和尚衣钵塔",
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "琬公塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "忏悔正慧大师灵塔",
+          "静安寺塔"
+        ],
+        "top5": [
+          "刘师民塔",
+          "天开塔",
+          "云居寺老虎塔",
+          "鞭塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "忏悔上人坟塔",
+        "expected_neighbors": [
+          "上方山亭阁式塔",
+          "云居寺老虎塔",
+          "琬公塔"
+        ],
+        "top5": [
+          "云居寺塔",
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "上方山亭阁式塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "忏悔上人坟塔",
+          "照塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "昊天塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "兴文塔",
+          "玉皇塔"
+        ],
+        "top5": [
+          "兴文塔",
+          "玉皇塔",
+          "伍侯塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天宁寺塔",
+        "expected_neighbors": [
+          "双塔庵北塔",
+          "天宫寺塔",
+          "觉山寺塔"
+        ],
+        "top5": [
+          "觉山寺塔",
+          "天成寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "法均和尚墓塔",
+        "expected_neighbors": [
+          "云居寺南塔",
+          "云居寺老虎塔",
+          "鞭塔"
+        ],
+        "top5": [
+          "云居寺老虎塔",
+          "鞭塔",
+          "刘师民塔",
+          "天开塔",
+          "云居寺南塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "法均和尚衣钵塔",
+        "expected_neighbors": [
+          "刘师民塔",
+          "四官营子塔",
+          "忏悔正慧大师灵塔"
+        ],
+        "top5": [
+          "忏悔正慧大师灵塔",
+          "云居寺老虎塔",
+          "刘师民塔",
+          "鞭塔",
+          "天开塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天成寺塔",
+        "expected_neighbors": [
+          "南安寺塔",
+          "圣塔院塔",
+          "天宫寺塔"
+        ],
+        "top5": [
+          "觉山寺塔",
+          "天宁寺塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 3,
+        "reciprocal_rank": 0.3333
+      },
+      {
+        "pagoda_id": "圣塔院塔",
+        "expected_neighbors": [
+          "南安寺塔",
+          "天宫寺塔",
+          "天成寺塔"
+        ],
+        "top5": [
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "天宫寺塔",
+        "expected_neighbors": [
+          "南安寺塔",
+          "圣塔院塔",
+          "天成寺塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "西岗塔",
+          "南安寺塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "西岗塔",
+        "expected_neighbors": [
+          "双塔庵北塔",
+          "圣塔院塔",
+          "天宫寺塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "南安寺塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "南安寺塔",
+        "expected_neighbors": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "天成寺塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "双塔庵北塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "兴文塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "昊天塔",
+          "玉皇塔"
+        ],
+        "top5": [
+          "昊天塔",
+          "玉皇塔",
+          "伍侯塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "智度寺塔",
+        "expected_neighbors": [
+          "云居寺塔",
+          "兴文塔",
+          "昊天塔"
+        ],
+        "top5": [
+          "兴文塔",
+          "忏悔正慧大师灵塔",
+          "昊天塔",
+          "法均和尚衣钵塔",
+          "照塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "云居寺塔",
+        "expected_neighbors": [
+          "忏悔上人坟塔",
+          "智度寺塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "忏悔上人坟塔",
+          "云居寺老虎塔",
+          "玉皇塔",
+          "刘师民塔",
+          "鞭塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "伍侯塔",
+        "expected_neighbors": [
+          "兴文塔",
+          "昊天塔",
+          "玉皇塔"
+        ],
+        "top5": [
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "辽释迦佛舍利塔",
+          "万部华严经塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "佛真猞猁迤逻尼塔",
+        "expected_neighbors": [
+          "华严塔",
+          "双塔庵北塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "禅房寺塔",
+          "华严塔",
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "first_hit_rank": 2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "pagoda_id": "双塔庵北塔",
+        "expected_neighbors": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔"
+        ],
+        "top5": [
+          "圣塔院塔",
+          "天宫寺塔",
+          "西岗塔",
+          "南安寺塔",
+          "觉山寺塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "万部华严经塔",
+        "expected_neighbors": [
+          "伍侯塔",
+          "昊天塔",
+          "辽释迦佛舍利塔"
+        ],
+        "top5": [
+          "辽释迦佛舍利塔",
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "辽释迦佛舍利塔",
+        "expected_neighbors": [
+          "万部华严经塔",
+          "伍侯塔",
+          "昊天塔"
+        ],
+        "top5": [
+          "万部华严经塔",
+          "玉皇塔",
+          "昊天塔",
+          "兴文塔",
+          "伍侯塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "海城金塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽滨塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "pagoda_id": "崇寿寺塔",
+        "expected_neighbors": [
+          "崇兴寺东塔",
+          "崇兴寺西塔",
+          "辽滨塔"
+        ],
+        "top5": [
+          "辽滨塔",
+          "崇兴寺西塔",
+          "崇兴寺东塔",
+          "铁岭白塔",
+          "辽阳白塔"
+        ],
+        "first_hit_rank": 1,
+        "reciprocal_rank": 1.0
+      }
+    ],
+    "equivalence_role": "Recorded CBR raw rankings and ground-truth neighbor sets define the reference baseline for the project KG CBR/prototype retrieval module.",
+    "target": {
+      "valid_samples": 68,
+      "hit_at_1": 0.6912,
+      "hit_at_3": 0.8971,
+      "hit_at_5": 0.9559,
+      "mrr": 0.7995
+    },
+    "passes_reference_baseline": true
+  }
+}

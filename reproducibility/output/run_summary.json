@@ -1,0 +1,321 @@
+{
+  "verification": {
+    "status": "pass",
+    "missing_files": [],
+    "missing_dirs": [],
+    "checks": {
+      "unexpected_runtime_files": [],
+      "data_manifest": {
+        "manifest_rows": 153,
+        "actual_data_files": 153,
+        "path_match": true,
+        "missing_from_manifest": [],
+        "extra_in_manifest": [],
+        "digest_mismatches": []
+      },
+      "cbr_configuration": {
+        "expected": {
+          "geo_spatial": 0.4,
+          "time_series": 0.4,
+          "physical_attr": 0.2,
+          "dao": 1.0,
+          "province": 0.125,
+          "sigma": 20.5,
+          "threshold": 8,
+          "shape_weight": 1.0,
+          "story_penalty_beta": 0.0
+        },
+        "observed": {
+          "geo_spatial": 0.4,
+          "time_series": 0.4,
+          "physical_attr": 0.2,
+          "dao": 1.0,
+          "province": 0.125,
+          "sigma": 20.5,
+          "threshold": 8,
+          "shape_weight": 1.0,
+          "story_penalty_beta": 0.0
+        },
+        "matches_expected": true,
+        "runtime_config_loader_present": true,
+        "configuration_notes_present": true
+      },
+      "requirements": {
+        "non_comment_dependency_count": 0,
+        "standard_library_only_marker_present": true
+      },
+      "raw_model_output_manifest": {
+        "manifest_rows": 99,
+        "actual_output_files": 99,
+        "path_match": true,
+        "only_txt_raw_outputs": true,
+        "non_txt_raw_outputs": [],
+        "contiguous_sample_numbering": true,
+        "non_contiguous_sequences": [],
+        "missing_from_manifest": [],
+        "extra_in_manifest": []
+      },
+      "cot_summary_sources": {
+        "summary_rows": 27,
+        "unique_source_files": 9,
+        "missing_sources": [],
+        "source_path_issues": [],
+        "uses_metrics": true
+      },
+      "cot_model_labels": {
+        "observed_model_labels": [
+          "DeepSeek-V3.2",
+          "GLM-5.1",
+          "Qwen3.5-397B-A17B"
+        ],
+        "expected_model_labels": [
+          "DeepSeek-V3.2",
+          "GLM-5.1",
+          "Qwen3.5-397B-A17B"
+        ],
+        "unexpected_model_labels": []
+      },
+      "kg_source_registry": {
+        "row_count": 10,
+        "has_full_lpkg_export": true,
+        "has_project_execution_tables": true,
+        "documents_non_redistributed_source_carriers": true,
+        "contains_not_redistributed_status": true
+      }
+    },
+    "full_lpkg_node_rows": 3739,
+    "full_lpkg_relationship_rows": 389891,
+    "full_lpkg_summary": {
+      "source_files": {
+        "nodes": "data/kg/full_lpkg_neo4j_export/nodes.csv",
+        "relationships": "data/kg/full_lpkg_neo4j_export/edges.csv"
+      },
+      "outputs": {
+        "nodes": "data/kg/full_lpkg_neo4j_export/nodes.csv",
+        "edges": "data/kg/full_lpkg_neo4j_export/edges.csv",
+        "summary": "data/kg/full_lpkg_neo4j_export/kg_full_summary.json"
+      },
+      "counts": {
+        "nodes": 3739,
+        "relationships": 389891,
+        "audited_embedded_node_property_instances": 17325,
+        "total_information_count": 393630,
+        "relationship_endpoint_ids": 3730,
+        "textual_only_nodes_added": 9,
+        "relationship_rows_with_blank_endpoint_name": 592
+      },
+      "expected_counts": {
+        "nodes": 3739,
+        "relationships": 389891,
+        "audited_embedded_node_property_instances": 17325,
+        "total_information_count": 393630
+      },
+      "pass_fail": {
+        "nodes": true,
+        "relationships": true,
+        "audited_embedded_node_property_instances": true,
+        "total_information_count": true
+      },
+      "node_label_counts": {
+        "结构层": 2292,
+        "区县": 356,
+        "部位": 272,
+        "年份": 235,
+        "历史区域": 193,
+        "历史事件": 84,
+        "辽塔": 68,
+        "地理坐标": 68,
+        "城市": 38,
+        "年号": 22,
+        "修建目的": 14,
+        "塔身装饰": 13,
+        "层数": 12,
+        "朝代": 9,
+        "皇帝": 9,
+        "壸门柱": 7,
+        "省份": 7,
+        "柱子": 6,
+        "铺作构件": 6,
+        "结构类型": 6,
+        "环境类型": 6,
+        "壸门雕像": 5,
+        "材质": 4,
+        "空间形态": 3,
+        "平面形状": 3,
+        "辽代疆域": 1
+      },
+      "node_group_counts": {
+        "structure": 2589,
+        "modern_geo": 469,
+        "chronology": 275,
+        "historical_geo": 194,
+        "event_context": 84,
+        "pagoda": 68,
+        "component_motif": 37,
+        "function_context": 23
+      },
+      "relationship_type_counts": {
+        "包含主构件": 380170,
+        "包含层": 4550,
+        "下层是": 2209,
+        "包含装饰": 424,
+        "属于城市": 361,
+        "包含部位": 272,
+        "NEXT_YEAR": 234,
+        "属于年号": 225,
+        "属于区域": 196,
+        "修建目的": 128,
+        "经历事件": 115,
+        "位于今": 89,
+        "位于环境": 86,
+        "空间隶属": 73,
+        "发生于": 72,
+        "材质为": 68,
+        "结构类型为": 68,
+        "平面形状为": 68,
+        "层数为": 68,
+        "地理定位": 68,
+        "属于历史区域": 68,
+        "始建于": 66,
+        "古今重叠": 60,
+        "位于古": 47,
+        "属于省份": 38,
+        "属于皇帝": 23,
+        "相邻": 15,
+        "属于朝代": 9,
+        "接续": 8,
+        "继位": 8,
+        "属于疆域": 5
+      },
+      "relationship_family_counts": {
+        "dense_structural_similarity": 380170,
+        "structural_composition": 4822,
+        "structural_sequence": 2209,
+        "chronology": 645,
+        "modern_geography": 556,
+        "component_motif": 424,
+        "historical_geography": 391,
+        "function_context": 287,
+        "formal_constraint": 272,
+        "event_context": 115
+      },
+      "node_property_key_counts": {
+        "名称": 3492,
+        "所属塔": 2547,
+        "编码": 2329,
+        "通用名称": 2275,
+        "序号": 2275,
+        "部位": 2275,
+        "类型": 272,
+        "计算高度": 272,
+        "公元": 235,
+        "类型编码": 232,
+        "级别": 193,
+        "描述": 152,
+        "柱式编码": 99,
+        "location": 80,
+        "数量": 77,
+        "原始年代记录": 68,
+        "测量通高": 67,
+        "LPSL编码": 67,
+        "保护级别": 64,
+        "出挑方式": 53,
+        "经度": 40,
+        "纬度": 40,
+        "有无束腰": 38,
+        "有无莲台": 33,
+        "是否有飞天": 29,
+        "数值": 12,
+        "姓名": 9
+      },
+      "boundary_note": "The normalized full LP-KG export contains 3,739 node rows and 389,891 relationship rows. Relationship topology is represented by exported endpoint identifiers where available; nine textual-only node labels preserve the reported full graph node count."
+    },
+    "project_kg_pagoda_rows": 68,
+    "cot_raw_model_output_file_count": 99,
+    "data_manifest_rows": 153
+  },
+  "metrics": {
+    "kg": {
+      "source": "kg_testset.json + kg_raw_results.json",
+      "query_record_count": 101,
+      "unique_query_id_count": 100,
+      "overall_kg_p": 0.9583,
+      "overall_kg_r": 0.9604,
+      "overall_kg_f1": 0.9592,
+      "passes_reference_project_kg_baseline": true,
+      "note": "BM25 baseline remains recorded in kg_retrieval_summary.csv; project KG parity is checked against recorded LP-KG answer sets."
+    },
+    "lpsl": {
+      "row_count": 100,
+      "input_parameter_role": "Randomized LPSL stress-test inputs; these values are not inference inputs and should not be interpreted as measured physical-ratio evidence.",
+      "decision_counts": {
+        "Accepted": 74,
+        "Rejected": 26
+      },
+      "conflict_flag_counts": {
+        "0": 74,
+        "1": 26
+      },
+      "stress_validator_replay_pass": true,
+      "stress_validator_bounds": [
+        -2.1,
+        3.0
+      ]
+    },
+    "cbr": {
+      "source": "project_kg_execution_tables/pagodas.csv + testset_ground_truth.json",
+      "valid_samples": 68,
+      "hit_at_1": 0.6912,
+      "hit_at_3": 0.8971,
+      "hit_at_5": 0.9559,
+      "mrr": 0.7995,
+      "passes_reference_project_kg_baseline": true,
+      "top5_order_matches_reference_cases": 68
+    },
+    "cot_ablation": {
+      "section_summary": {
+        "A": {
+          "cell_count": 9,
+          "mean_of_cell_means": 0.5172,
+          "min_cell_mean": 0.3276,
+          "max_cell_mean": 0.7909
+        },
+        "B": {
+          "cell_count": 9,
+          "mean_of_cell_means": 0.3161,
+          "min_cell_mean": 0.2299,
+          "max_cell_mean": 0.7651
+        },
+        "C": {
+          "cell_count": 9,
+          "mean_of_cell_means": 0.25,
+          "min_cell_mean": 0.1928,
+          "max_cell_mean": 0.3534
+        }
+      },
+      "model_section_summary": {
+        "DeepSeek-V3.2|A": 0.6177,
+        "DeepSeek-V3.2|B": 0.4163,
+        "DeepSeek-V3.2|C": 0.2449,
+        "GLM-5.1|A": 0.4212,
+        "GLM-5.1|B": 0.267,
+        "GLM-5.1|C": 0.2457,
+        "Qwen3.5-397B-A17B|A": 0.5127,
+        "Qwen3.5-397B-A17B|B": 0.2651,
+        "Qwen3.5-397B-A17B|C": 0.2595
+      }
+    }
+  },
+  "project_kg_equivalence": {
+    "kg_retrieval_pass": true,
+    "cbr_retrieval_pass": true
+  },
+  "json_input_files_checked": 7,
+  "all_json_inputs_valid_for_reproduction": true,
+  "data_manifest_file_count": 153,
+  "project_kg_execution_tables": {
+    "pagodas": 68,
+    "role": "released tabular query and CBR execution view; full LP-KG scale is reported under data/kg/full_lpkg_neo4j_export"
+  },
+  "manifest_file_count": 180
+}

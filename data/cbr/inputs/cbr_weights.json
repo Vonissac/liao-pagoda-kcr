@@ -1,0 +1,22 @@
+{
+  "weights": {
+    "geo_spatial": 0.4,
+    "time_series": 0.4,
+    "physical_attr": 0.2
+  },
+  "geo_params": {
+    "county": 0.0,
+    "city": 0.0,
+    "province": 0.125,
+    "dao": 1.0
+  },
+  "time_params": {
+    "sigma": 20.5,
+    "threshold": 8
+  },
+  "physical_params": {
+    "shape_weight": 1.0,
+    "story_penalty_beta": 0.0
+  },
+  "source_note": "Aligned to manuscript CBR formula: S_CBR = alpha*S_space + beta*S_time + gamma*S_mod with alpha=0.4, beta=0.4, gamma=0.2; implemented scoring S_direct = 0.4*D_dao + 0.4*T_era + 0.2*M_story + 0.05*P_province. Nested geo_params.province is 0.125 so 0.4*0.125 = 0.05."
+}

@@ -1,0 +1,10 @@
+Package check,Value,Reviewer use
+Verification status,pass after local reproduction,"Confirms required public package directories, files and reproducibility checks pass"
+Public package files,191 including reproducibility outputs,GitHub package inventory
+Data manifest rows,153,Released data-file inventory; data/DATA_MANIFEST.csv excludes itself
+Full LP-KG scale,3739 nodes; 389891 relationships,Authoritative graph-scale check
+Public project-KG execution view,68 pagodas,"Query parity and CBR rerun"
+KG source/evidence registry,present at data/kg/kg_source_registry.csv,Confirms public KG inputs are distinguished from source carriers not redistributed in this package
+Reproducibility outputs,9 files; safe to delete and rerun,Fresh output check using code/scripts/run_all.py
+Release-boundary check,public package includes no image binaries outside the stated release boundary,Confirms the public package follows the documented data boundary
+KG-scale consistency check,current full LP-KG export reports 3739 nodes and 389891 relationships,Confirms graph-scale records use the current full LP-KG boundary

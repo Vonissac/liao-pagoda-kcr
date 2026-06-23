@@ -1,0 +1,8 @@
+path,leading_comment_count,payload_type,payload_count,json_loadable_without_comment_handling,valid_for_reproduction
+data/kg/inputs/bm25_corpus_raw.json,0,list,68,True,True
+data/kg/inputs/kg_testset.json,0,list,101,True,True
+data/kg/raw_results/bm25_raw_results.json,0,list,101,True,True
+data/kg/raw_results/kg_raw_results.json,0,list,101,True,True
+data/cbr/inputs/cbr_weights.json,0,dict,5,True,True
+data/cbr/inputs/spatial_node_info.json,0,dict,4,True,True
+data/cbr/inputs/testset_ground_truth.json,0,list,68,True,True

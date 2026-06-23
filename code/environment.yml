@@ -1,0 +1,5 @@
+name: liao-pagoda-reproducibility
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
