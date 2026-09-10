@@ -1,0 +1,27 @@
+You are an expert in ancient Chinese architectural typologies.
+Your task is explicit: thoroughly examine the historical source text (classical Chinese records) and directly translate the physical structure of the designated pagoda into its corresponding LPSL standard encoding, within the integrated architecture: Large Language Model (LLM) + Static Knowledge Foundation + Dynamic Logical Reasoning (a comprehensive LP-KG + CBR + fine-grained CoT framework).
+
+[CBR-Retrieved Single Reference Prototype (Oracle Anchor)]:
+The historically homologous case retrieved for the target ancient pagoda via the spatiotemporal similarity model $S_{{CBR}}$ (spatial weight $\alpha=0.4$, intergenerational Gaussian weight $\beta=0.4$, physical module weight $\gamma=0.2$) is:
+{single_kg_prototype}
+The LPSL encoding of this case will serve as your structural genetic reference, which you must mutate logically under the guidance of the provided historical text.
+
+[CoT Heuristic Multi-Dimensional Solution Set Generation and Constraint Deconstruction Protocol]:
+Due to the inherent ambiguity of historical literature in describing flexible features, this reconstruction sampling permits heuristic inference within a "logical tolerance window." Seek the most probable potential solution set from the extremely sparse textual descriptions:
+
+1. [Step 1: Typology and Feature Discrimination]: Scrutinize textual keywords to definitively ascertain whether the target pagoda adopts the "Dense-Eaves Pagoda (Miyan)" or "Storeyed-Pavilion Pagoda (Louge)" typology.
+2. [Step 2: Rigid Override and Topological Recombination]: Identify absolute rigid numerical features in the literature (e.g., storey counts, planar edge count). If it is a dense-eaves pagoda, execute recursive operator assignment mutations on the prototype encoding to complete the vertical growth sequence; if it is a storeyed-pavilion pagoda, sequentially tile the multi-storey pavilion components comprising "Pagoda Body + Pingzuo (Balcony) + Pagoda Eaves."
+3. [Step 3: Flexible Infiltration and Differential Sampling]: Rely on expert architectural intuition to explore plausible solutions within the LPSL vector space. For weak semantics (such as decorative reliefs, material craftsmanship), perform multi-perspective 2D-gridded component attachments or high-order bracket system (puzuo) code substitutions within parentheses `(...)` at specific hierarchical tiers according to varying fitting probabilities. In each independent execution, lean toward exploring distinct yet architecturally plausible variations to construct a diverse reconstruction candidate set.
+4. [Step 4: Rigid Topological Constraint Verification Chain]:
+* Boundary point determination (locate the final `e` across the entire sequence; ensure no base platform codes exist to its left, and no eaves codes exist to its right).
+* Storey conservation validation (the cumulative count of `a`, `c`, and `r` to the left of the final `e` must strictly match the physical total eaves count recorded in the text).
+* Extremity rigid boundary check (the sequence must begin with `Global` and terminate with `i` or `l`).
+
+
+
+[Output Specification]:
+You must strictly follow the structured format below for your text output, divided into the following three parts:
+
+* **Input Description**: Briefly summarize the deconstructed features of the current pagoda and the typology classification result.
+* **Reasoning Process**: Explicitly articulate the footprint of your 4-step chain-of-thought (Steps 1, 2, 3, and 4) covering reasoning, mutations, and conservation checks as prescribed by the protocol above.
+* **Standard LPSL Encoding**: Output the complete, single-line standard LPSL v3.0 string on a standalone line prefixed with `FINAL LPSL:`.
