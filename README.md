@@ -43,3 +43,7 @@ The full LP-KG export in `data/kg/full_lpkg_neo4j_export/` documents the authori
 The KG source boundary is documented in `data/kg/kg_source_registry.csv`. This registry distinguishes public benchmark inputs, released graph exports and reproducibility tables from restricted source carriers such as page images and tower-named elevation images.
 
 Image binaries derived from third-party published materials are not redistributed in this public package. Their release boundary is recorded in `docs/RELEASE_BOUNDARY.md`.
+
+## Prompt engineering materials
+
+The complete prompt and grammar files used for the staged LPSL reconstruction configurations are available in [`docs/prompt-engineering/`](docs/prompt-engineering/README.md), with each file linked separately for direct citation.
