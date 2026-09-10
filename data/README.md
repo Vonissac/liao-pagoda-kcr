@@ -9,6 +9,7 @@ This directory contains the public reproducibility data for the Liao pagoda stud
 - `lpsl/`: LPSL encodings, validation replay table and measurement source workbooks.
 - `cot_ablation/`: model input instructions, source texts, raw text outputs and metric workbooks.
 - `supplementary_tables/`: machine-readable source tables supporting the manuscript supplementary tables.
+- `robustness/`: Inputs under varying text sparsity, model predictions and robustness evaluation metrics.
 
 ## KG Scale Boundary
 
